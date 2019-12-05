@@ -17,7 +17,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "struct.h"
+#define WIDTH 1920
+#define HEIGHT 1080
 
+sfText *my_press_space(void);
 void my_create_game_object(game_object_t *parallax);
 sfRenderWindow *create_window(int nb);
 void analyse_events(window_t *window);

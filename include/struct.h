@@ -13,21 +13,27 @@
 
 typedef struct window_s
 {
+    int status;
     sfRenderWindow* window;
     sfEvent event;
 }window_t;
 
 typedef enum
 {
+    BACK_1,
     BACK,
     MID,
-    FRONT
+    FRONT_1,
+    FRONT_2,
+    PRESS_START,
+    LEN
 }PARALLAX;
 
 typedef struct game_object_s
 {
     PARALLAX type;
     float speed;
+    int size_max;
     sfSprite* sprite;
     sfTexture* texture;
     sfVector2f pos;
