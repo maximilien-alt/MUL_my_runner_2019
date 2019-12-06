@@ -7,11 +7,25 @@
 
 #include "../include/my.h"
 
-void analyse_events(window_t *window)
+void manage_key_pressed(window_t *window, game_object_t *parallax)
+{
+    if (window->event.key.code == sfKeyRight) {
+        for (int i = 1; i < LEN - 1; i += 1)
+            parallax[i].speed += 1;
+    }
+    if (window->event.key.code == sfKeyLeft) {
+        for (int i = 1; i < LEN - 1; i += 1)
+            parallax[i].speed += -1;
+    }
+}
+
+void analyse_events(window_t *window, game_object_t *parallax)
 {
     if (window->event.type == sfEvtClosed || \
     (sfKeyboard_isKeyPressed(sfKeyEscape)))
         sfRenderWindow_close(window->window);
+    if (window->event.type == sfEvtKeyPressed)
+        manage_key_pressed(window, parallax);
 }
 
 sfRenderWindow *create_window(int nb)
@@ -21,6 +35,7 @@ sfRenderWindow *create_window(int nb)
 
     window = sfRenderWindow_create(mode, "My_runner", sfResize | sfClose, NULL);
     sfRenderWindow_setFramerateLimit(window, nb);
+    sfRenderWindow_setMouseCursorVisible(window, sfFalse);
     return (window);
 }
 

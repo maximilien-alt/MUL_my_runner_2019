@@ -66,7 +66,7 @@ int main(int ac, char *av[])
     sfRenderWindow_setVerticalSyncEnabled(window.window, sfTrue);
     while (sfRenderWindow_isOpen(window.window)) {
         while (sfRenderWindow_pollEvent(window.window, &window.event))
-            analyse_events(&window);
+            analyse_events(&window, parallax);
         my_clock(parallax, clock, time);
         my_draw_status(&window, parallax);
     }
