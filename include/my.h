@@ -20,11 +20,13 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
-void move_rect(game_object_t *game_object, int offset, int max_size, int status);
+void move_rect(game_object_t *game_object, int offset, \
+int max_size, int status);
 int my_speed(int type);
 int my_size_max(int type);
 void manage_mouse_click(window_t *window, game_object_t *game_object);
-void manage_mouse_moved(window_t *window, game_object_t *game_object, sfIntRect rect, sfIntRect rect_2);
+void manage_mouse_moved(window_t *window, game_object_t *game_object, \
+sfIntRect rect, sfIntRect rect_2);
 sfText* my_text(void);
 void manage_key_pressed(window_t *window, game_object_t *game_object);
 sfText *my_press_space(void);
