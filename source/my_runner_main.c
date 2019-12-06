@@ -34,6 +34,11 @@ sfTime time, window_t *window)
         game_object[PRESS_START].size_max, PRESS_START);
         sfClock_restart(clock);
     }
+    if (window->status == 1 && seconds > 0.1) {
+        move_rect(game_object, game_object[CURSOR].speed, \
+        game_object[CURSOR].size_max, CURSOR);
+        sfClock_restart(clock);
+    }
 }
 
 void my_destoy_object(game_object_t *game_object, window_t window)
@@ -64,7 +69,7 @@ void my_draw_status(window_t *window, game_object_t *game_object)
     sfRenderWindow_display(window->window);
 }
 
-int main(int ac, char *av[])
+void main(int ac, char *av[])
 {
     game_object_t game_object[CURSOR + 1];
     window_t window;
@@ -83,5 +88,4 @@ int main(int ac, char *av[])
         my_draw_status(&window, game_object);
     }
     my_destoy_object(game_object, window);
-    return (0);
 }

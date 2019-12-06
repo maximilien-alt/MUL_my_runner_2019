@@ -9,13 +9,18 @@
 
 void analyse_events(window_t *window, game_object_t *game_object)
 {
+    sfIntRect rect = {1920, 0, 1920, 1080};
+    sfIntRect rect_2 = {0, 0, 1920, 1080};
+
     if (window->event.type == sfEvtClosed || \
     (sfKeyboard_isKeyPressed(sfKeyEscape)))
         sfRenderWindow_close(window->window);
     if (window->event.type == sfEvtKeyPressed)
         manage_key_pressed(window, game_object);
     if (window->event.type == sfEvtMouseMoved && window->status == 1)
-        manage_mouse_moved(game_object, window);
+        manage_mouse_moved(window, game_object, rect, rect_2);
+    if (window->event.type == sfEvtMouseButtonPressed)
+        manage_mouse_click(window, game_object);
 }
 
 sfRenderWindow *create_window(int nb)
@@ -35,14 +40,8 @@ sfIntRect rect, PARALLAX type)
     game_object_t game_object;
 
     game_object.type = type;
-    if (type == 5)
-        game_object.speed = 1920;
-    else
-        game_object.speed = type;
-    if (type == 5)
-        game_object.size_max = 9600;
-    else
-        game_object.size_max = rect.width;
+    game_object.speed = my_speed(type);
+    game_object.size_max = my_size_max(type);
     game_object.pos = pos;
     game_object.rect = rect;
     game_object.texture = sfTexture_createFromFile(filepath, NULL);
