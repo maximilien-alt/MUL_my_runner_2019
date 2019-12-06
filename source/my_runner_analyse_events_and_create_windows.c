@@ -7,25 +7,15 @@
 
 #include "../include/my.h"
 
-void manage_key_pressed(window_t *window, game_object_t *parallax)
-{
-    if (window->event.key.code == sfKeyRight) {
-        for (int i = 1; i < LEN - 1; i += 1)
-            parallax[i].speed += 1;
-    }
-    if (window->event.key.code == sfKeyLeft) {
-        for (int i = 1; i < LEN - 1; i += 1)
-            parallax[i].speed += -1;
-    }
-}
-
-void analyse_events(window_t *window, game_object_t *parallax)
+void analyse_events(window_t *window, game_object_t *game_object)
 {
     if (window->event.type == sfEvtClosed || \
     (sfKeyboard_isKeyPressed(sfKeyEscape)))
         sfRenderWindow_close(window->window);
     if (window->event.type == sfEvtKeyPressed)
-        manage_key_pressed(window, parallax);
+        manage_key_pressed(window, game_object);
+    if (window->event.type == sfEvtMouseMoved && window->status == 1)
+        manage_mouse_moved(game_object, window);
 }
 
 sfRenderWindow *create_window(int nb)
@@ -52,7 +42,7 @@ sfIntRect rect, PARALLAX type)
     if (type == 5)
         game_object.size_max = 9600;
     else
-        game_object.size_max = WIDTH;
+        game_object.size_max = rect.width;
     game_object.pos = pos;
     game_object.rect = rect;
     game_object.texture = sfTexture_createFromFile(filepath, NULL);
@@ -63,18 +53,34 @@ sfIntRect rect, PARALLAX type)
     return (game_object);
 }
 
-void my_create_game_object(game_object_t *parallax)
+void my_create_game_object_next(game_object_t *game_object, window_t *window)
 {
-    parallax[BACK_1] = create_object("sprites/background_1.png", \
+    sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
+    sfVector2f pos = {mouse.x, mouse.y};
+
+    game_object[CURSOR] = create_object("sprites/cursor.png", \
+    pos, (sfIntRect){0, 0, 200, 200}, CURSOR);
+}
+
+void my_create_game_object(game_object_t *game_object, window_t *window)
+{
+    game_object[BACK_1] = create_object("sprites/background_1.png", \
     (sfVector2f){0, 0}, (sfIntRect){0, 0, WIDTH, HEIGHT}, BACK_1);
-    parallax[BACK] = create_object("sprites/background_2.png", \
+    game_object[BACK] = create_object("sprites/background_2.png", \
     (sfVector2f){0, 0}, (sfIntRect){0, 0, WIDTH, HEIGHT}, BACK);
-    parallax[MID] = create_object("sprites/background_3.png", \
+    game_object[MID] = create_object("sprites/background_3.png", \
     (sfVector2f){0, 0}, (sfIntRect){0, 0, WIDTH, HEIGHT}, MID);
-    parallax[FRONT_1] = create_object("sprites/background_4.png", \
+    game_object[FRONT_1] = create_object("sprites/background_4.png", \
     (sfVector2f){0, 0}, (sfIntRect){0, 0, WIDTH, HEIGHT}, FRONT_1);
-    parallax[FRONT_2] = create_object("sprites/background_5.png", \
+    game_object[FRONT_2] = create_object("sprites/background_5.png", \
     (sfVector2f){0, 0}, (sfIntRect){0, 0, WIDTH, HEIGHT}, FRONT_2);
-    parallax[PRESS_START] = create_object("sprites/press_start.png", \
+    game_object[PRESS_START] = create_object("sprites/press_start.png", \
     (sfVector2f){0, 0}, (sfIntRect){0, 0, WIDTH, HEIGHT}, PRESS_START);
+    game_object[PLAY] = create_object("sprites/play.png", \
+    (sfVector2f){0, 0}, (sfIntRect){0, 0, WIDTH, HEIGHT}, PLAY);
+    game_object[OPTIONS] = create_object("sprites/options.png", \
+    (sfVector2f){0, 0}, (sfIntRect){0, 0, WIDTH, HEIGHT}, OPTIONS);
+    game_object[QUIT] = create_object("sprites/quit.png", \
+    (sfVector2f){0, 0}, (sfIntRect){0, 0, WIDTH, HEIGHT}, QUIT);
+    my_create_game_object_next(game_object, window);
 }

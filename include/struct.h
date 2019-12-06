@@ -16,6 +16,7 @@ typedef struct window_s
     int status;
     sfRenderWindow* window;
     sfEvent event;
+    sfText *text;
 }window_t;
 
 typedef enum
@@ -26,6 +27,10 @@ typedef enum
     FRONT_1,
     FRONT_2,
     PRESS_START,
+    PLAY,
+    OPTIONS,
+    QUIT,
+    CURSOR,
     LEN
 }PARALLAX;
 

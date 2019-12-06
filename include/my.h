@@ -20,11 +20,13 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
-void manage_key_pressed(window_t *window, game_object_t *parallax);
+void manage_mouse_moved(game_object_t *game_object, window_t *window);
+sfText* my_text(void);
+void manage_key_pressed(window_t *window, game_object_t *game_object);
 sfText *my_press_space(void);
-void my_create_game_object(game_object_t *parallax);
+void my_create_game_object(game_object_t *game_object, window_t *window);
 sfRenderWindow *create_window(int nb);
-void analyse_events(window_t *window, game_object_t *parallax);
+void analyse_events(window_t *window, game_object_t *game_object);
 int    my_infin_cmp(char *str, char *str2);
 int    my_compute_power_rec(int nb, int p);
 int    my_compute_square_root(int nb);
