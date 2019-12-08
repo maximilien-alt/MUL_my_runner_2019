@@ -52,8 +52,11 @@ void manage_key_pressed(window_t *window, game_object_t *game_object)
         for (int i = 1; i <PRESS_START; i += 1)
             game_object[i].speed += -1;
     }
-    if (window->event.key.code == sfKeySpace && window->status == 0)
+    if (window->status == 0 && window->event.key.code == sfKeySpace) {
+        for (int i = 1; i < PRESS_START; i += 1)
+            game_object[i].speed += 10;
         window->status = 1;
+    }
 }
 
 sfText* my_text(void)
