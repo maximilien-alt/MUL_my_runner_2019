@@ -17,40 +17,24 @@ void move_rect(game_object_t *game_object, int offset, int max_size, int status)
     game_object[status].rect);
 }
 
-void my_clock(game_object_t *game_object, sfClock *clock, \
-sfTime time, window_t *window)
-{
-    float seconds;
-
-    time = sfClock_getElapsedTime(clock);
-    seconds = time.microseconds / 1000000.0;
-    if (seconds > 0.01) {
-        for (int i = 0; i < PRESS_START; i += 1)
-            move_rect(game_object, game_object[i].speed, \
-            game_object[i].size_max, i);
-    }
-    if (window->status == 0 && seconds > 0.15) {
-        move_rect(game_object, game_object[PRESS_START].speed, \
-        game_object[PRESS_START].size_max, PRESS_START);
-        sfClock_restart(clock);
-    }
-    if (window->status == 1 && seconds > 0.1) {
-        move_rect(game_object, game_object[CURSOR].speed, \
-        game_object[CURSOR].size_max, CURSOR);
-        sfClock_restart(clock);
-    }
-}
-
-void my_destoy_object(game_object_t *game_object, window_t window)
+void my_destoy_object(game_object_t *game_object, \
+window_t window, music_t musics, score_t scores)
 {
     for (int i = 0; i < LEN; i += 1) {
         sfTexture_destroy(game_object[i].texture);
         sfSprite_destroy(game_object[i].sprite);
     }
+    sfMusic_destroy(musics.playing);
+    sfMusic_destroy(musics.menu_button);
+    sfMusic_destroy(musics.game_start);
+    sfMusic_destroy(musics.menu);
+    sfText_destroy(scores.highscore);
+    sfText_destroy(scores.score);
     sfRenderWindow_destroy(window.window);
 }
 
-void my_draw_status(window_t *window, game_object_t *game_object)
+void my_draw_status(window_t *window, game_object_t *game_object, \
+score_t scores)
 {
     sfRenderWindow_clear(window->window, sfBlack);
     if (window->status == 0) {
@@ -58,34 +42,34 @@ void my_draw_status(window_t *window, game_object_t *game_object)
             sfRenderWindow_drawSprite(window->window, \
             game_object[i].sprite, NULL);
     }
-    if (window->status == 1) {
-        for (int i = 0; i < PRESS_START; i += 1)
-            sfRenderWindow_drawSprite(window->window, \
-            game_object[i].sprite, NULL);
-        for (int i = PLAY; i < LEN; i += 1)
-            sfRenderWindow_drawSprite(window->window, \
-            game_object[i].sprite, NULL);
-    }
+    if (window->status == 1)
+        my_draw_menu(window, game_object, scores);
+    if (window->status == 2)
+        my_draw_playing(window, game_object, scores);
+    if (window->status == 3)
+        my_draw_jumping(window, game_object, scores);
     sfRenderWindow_display(window->window);
 }
 
 void main(int ac, char *av[])
 {
-    game_object_t game_object[CURSOR + 1];
+    game_object_t game_object[LEN];
     window_t window;
-    sfClock *clock;
-    sfTime time;
+    my_clock_t clock;
+    music_t musics;
+    score_t score;
 
-    window.status = 0;
     window.window = create_window(30);
+    my_runner_set_structures(&window, &musics, &score);
     my_create_game_object(game_object, &window);
-    clock = sfClock_create();
-    sfRenderWindow_setVerticalSyncEnabled(window.window, sfTrue);
+    clock.clock = sfClock_create();
+    sfMusic_play(musics.menu);
     while (sfRenderWindow_isOpen(window.window)) {
         while (sfRenderWindow_pollEvent(window.window, &window.event))
-            analyse_events(&window, game_object);
-        my_clock(game_object, clock, time, &window);
-        my_draw_status(&window, game_object);
+            analyse_events(&window, game_object, musics);
+        my_jump(game_object, &window);
+        my_clock(game_object, &clock, &window, &score);
+        my_draw_status(&window, game_object, score);
     }
-    my_destoy_object(game_object, window);
+    my_destoy_object(game_object, window, musics, score);
 }

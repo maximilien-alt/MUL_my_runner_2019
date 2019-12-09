@@ -7,22 +7,6 @@
 
 #include "../include/my.h"
 
-void analyse_events(window_t *window, game_object_t *game_object)
-{
-    sfIntRect rect = {1920, 0, 1920, 1080};
-    sfIntRect rect_2 = {0, 0, 1920, 1080};
-
-    if (window->event.type == sfEvtClosed || \
-    (sfKeyboard_isKeyPressed(sfKeyEscape)))
-        sfRenderWindow_close(window->window);
-    if (window->event.type == sfEvtKeyPressed)
-        manage_key_pressed(window, game_object);
-    if (window->event.type == sfEvtMouseMoved && window->status == 1)
-        manage_mouse_moved(window, game_object, rect, rect_2);
-    if (window->event.type == sfEvtMouseButtonPressed)
-        manage_mouse_click(window, game_object);
-}
-
 sfRenderWindow *create_window(int nb)
 {
     sfRenderWindow* window;
@@ -40,6 +24,8 @@ sfIntRect rect, PARALLAX type)
     game_object_t game_object;
 
     game_object.type = type;
+    game_object.vel.x = 0;
+    game_object.vel.y = 0;
     game_object.speed = my_speed(type);
     game_object.size_max = my_size_max(type);
     game_object.pos = pos;
@@ -49,6 +35,10 @@ sfIntRect rect, PARALLAX type)
     sfSprite_setTexture(game_object.sprite, game_object.texture, sfTrue);
     sfSprite_setTextureRect(game_object.sprite, game_object.rect);
     sfSprite_setPosition(game_object.sprite, game_object.pos);
+    if (type == CURSOR)
+        sfSprite_setOrigin(game_object.sprite, (sfVector2f){100, 100});
+    if (type == NINJA)
+        sfSprite_setOrigin(game_object.sprite, (sfVector2f){84, 117.5});
     return (game_object);
 }
 
@@ -59,6 +49,8 @@ void my_create_game_object_next(game_object_t *game_object, window_t *window)
 
     game_object[CURSOR] = create_object("sprites/cursor.png", \
     pos, (sfIntRect){0, 0, 200, 200}, CURSOR);
+    game_object[NINJA] = create_object("sprites/ninja.png", \
+    (sfVector2f){1920/2, 920}, (sfIntRect){0, 0, 168, 235}, NINJA);
 }
 
 void my_create_game_object(game_object_t *game_object, window_t *window)

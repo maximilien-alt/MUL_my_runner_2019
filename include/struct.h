@@ -11,12 +11,37 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
+typedef struct my_clock_s
+{
+    sfClock *clock;
+    sfTime time;
+    float seconds;
+}my_clock_t;
+
+typedef struct score_s
+{
+    sfText *highscore;
+    sfText* score;
+    char *zero;
+}score_t;
+
+typedef struct music_s
+{
+    sfMusic *game_start;
+    sfMusic *menu_button;
+    sfMusic *playing;
+    sfMusic *menu;
+}music_t;
+
 typedef struct window_s
 {
-    int status;
     sfRenderWindow* window;
     sfEvent event;
-    sfText *text;
+    int status;
+    int nb_jump;
+    int check_play;
+    int check_options;
+    int check_quit;
 }window_t;
 
 typedef enum
@@ -31,6 +56,7 @@ typedef enum
     OPTIONS,
     QUIT,
     CURSOR,
+    NINJA,
     LEN
 }PARALLAX;
 
@@ -42,6 +68,7 @@ typedef struct game_object_s
     sfSprite* sprite;
     sfTexture* texture;
     sfVector2f pos;
+    sfVector2f vel;
     sfIntRect rect;
 }game_object_t;
 

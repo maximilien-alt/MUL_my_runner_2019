@@ -50,7 +50,7 @@ char    *my_cpy_without_null(char *str, char *cpy, int letter, int zero)
     int str_len = my_strlen(str);
 
     if (str[0] != '0')
-        return (my_str_is_easy(str, cpy));
+        return (str);
     while (str[letter] == '0' && str[letter])
         letter += 1;
     if (letter == str_len) {

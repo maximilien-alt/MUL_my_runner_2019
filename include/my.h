@@ -19,20 +19,36 @@
 #include "struct.h"
 #define WIDTH 1920
 #define HEIGHT 1080
+#define GRAV 9.8
 
+void my_clock(game_object_t *game_object, my_clock_t *clock, \
+window_t *window, score_t *scores);
+sfText *my_score(char *score, sfVector2f pos);
+char *my_highscore(char *filepath);
+void my_draw_jumping(window_t *window, game_object_t *game_object, \
+score_t scores);
+void my_music_button(music_t musics, window_t *window, int check);
+void my_runner_set_structures(window_t *window, music_t *music, score_t *score);
+void my_jump(game_object_t *game_object, window_t *window);
+void my_draw_menu(window_t *window, game_object_t *game_object, \
+score_t scores);
+void my_draw_playing(window_t *window, game_object_t *game_object, \
+score_t scores);
 void move_rect(game_object_t *game_object, int offset, \
 int max_size, int status);
 int my_speed(int type);
 int my_size_max(int type);
-void manage_mouse_click(window_t *window, game_object_t *game_object);
+void manage_mouse_click(window_t *window, game_object_t *game_object, \
+music_t musics);
 void manage_mouse_moved(window_t *window, game_object_t *game_object, \
-sfIntRect rect, sfIntRect rect_2);
+sfIntRect rect, music_t musics);
 sfText* my_text(void);
 void manage_key_pressed(window_t *window, game_object_t *game_object);
 sfText *my_press_space(void);
 void my_create_game_object(game_object_t *game_object, window_t *window);
 sfRenderWindow *create_window(int nb);
-void analyse_events(window_t *window, game_object_t *game_object);
+void analyse_events(window_t *window, game_object_t *game_object, \
+music_t music);
 int    my_infin_cmp(char *str, char *str2);
 int    my_compute_power_rec(int nb, int p);
 int    my_compute_square_root(int nb);
