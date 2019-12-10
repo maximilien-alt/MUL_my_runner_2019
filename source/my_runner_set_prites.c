@@ -8,23 +8,6 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
-/*sfText *my_text(void)
-{
-    sfText* text;
-    sfFont* font;
-    char *str = "               CONTROLS\n\n         JUMP            SPACE\n\n         QUIT            ESCAPE\n\n\n\n\n\n\n\n                VOLUME";
-    sfVector2f pos = {750, 0};
-
-    font = sfFont_createFromFile("sprites/text.ttf");
-    text = sfText_create();
-    sfText_setString(text, str);
-    sfText_setFont(text, font);
-    sfText_setCharacterSize(text, 60);
-    //sfText_setPosition(text, pos);
-    sfText_setColor(text, sfMagenta);
-    return (text);
-}*/
-
 void my_runner_set_structures_next(window_t *window, \
 music_t *music, score_t *scores)
 {
