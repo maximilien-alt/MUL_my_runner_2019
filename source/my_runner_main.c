@@ -48,6 +48,10 @@ score_t scores)
         my_draw_playing(window, game_object, scores);
     if (window->status == 3)
         my_draw_jumping(window, game_object, scores);
+    if (window->status == 4)
+        my_draw_options(window, game_object, scores);
+    if (window->status == 5)
+        my_draw_volume(window, game_object, scores);
     sfRenderWindow_display(window->window);
 }
 
@@ -66,7 +70,7 @@ void main(int ac, char *av[])
     sfMusic_play(musics.menu);
     while (sfRenderWindow_isOpen(window.window)) {
         while (sfRenderWindow_pollEvent(window.window, &window.event))
-            analyse_events(&window, game_object, musics);
+            analyse_events(&window, game_object, musics, score);
         my_jump(game_object, &window);
         my_clock(game_object, &clock, &window, &score);
         my_draw_status(&window, game_object, score);

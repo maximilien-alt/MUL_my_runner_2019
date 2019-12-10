@@ -21,6 +21,14 @@
 #define HEIGHT 1080
 #define GRAV 9.8
 
+void my_check_highscore(score_t scores);
+void my_set_volumes(game_object_t *game_object, music_t music);
+void my_draw_volume(window_t *window, game_object_t *game_object, \
+score_t scores);
+void manage_mouse_click_next(window_t *window, game_object_t *game_object, \
+music_t musics);
+void my_draw_options(window_t *window, game_object_t *game_object, \
+score_t scores);
 void my_clock(game_object_t *game_object, my_clock_t *clock, \
 window_t *window, score_t *scores);
 sfText *my_score(char *score, sfVector2f pos);
@@ -48,7 +56,7 @@ sfText *my_press_space(void);
 void my_create_game_object(game_object_t *game_object, window_t *window);
 sfRenderWindow *create_window(int nb);
 void analyse_events(window_t *window, game_object_t *game_object, \
-music_t music);
+music_t music, score_t scores);
 int    my_infin_cmp(char *str, char *str2);
 int    my_compute_power_rec(int nb, int p);
 int    my_compute_square_root(int nb);

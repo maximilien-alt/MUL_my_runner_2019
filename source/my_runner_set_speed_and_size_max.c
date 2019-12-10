@@ -8,6 +8,18 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+void my_set_volumes(game_object_t *game_object, music_t music)
+{
+    sfMusic_setVolume(music.game_start, \
+    (game_object[VOLUME].pos.x - 750) / 2);
+    sfMusic_setVolume(music.menu_button, \
+    (game_object[VOLUME].pos.x - 750) / 2);
+    sfMusic_setVolume(music.playing, \
+    (game_object[VOLUME].pos.x - 750) / 2);
+    sfMusic_setVolume(music.menu, \
+    (game_object[VOLUME].pos.x - 750) / 2);
+}
+
 int my_speed(int type)
 {
     if (type == PRESS_START || type == PLAY)
@@ -26,6 +38,14 @@ int my_size_max(int type)
     return (WIDTH);
 }
 
+void my_window_checks(window_t *window)
+{
+    window->check_play += 1;
+    window->check_options += 1;
+    window->check_quit += 1;
+    window->check_back += 1;
+}
+
 void my_music_button(music_t musics, window_t *window, int check)
 {
     sfMusic_setLoop(musics.menu_button, sfFalse);
@@ -41,7 +61,9 @@ void my_music_button(music_t musics, window_t *window, int check)
         sfMusic_play(musics.menu_button);
         sfMusic_setLoop(musics.menu_button, sfTrue);
     }
-    window->check_play += 1;
-    window->check_options += 1;
-    window->check_quit += 1;
+    if (window->check_back == 0 && check == 4) {
+        sfMusic_play(musics.menu_button);
+        sfMusic_setLoop(musics.menu_button, sfTrue);
+    }
+    my_window_checks(window);
 }

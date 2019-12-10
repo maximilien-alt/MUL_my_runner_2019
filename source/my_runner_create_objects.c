@@ -51,6 +51,14 @@ void my_create_game_object_next(game_object_t *game_object, window_t *window)
     pos, (sfIntRect){0, 0, 200, 200}, CURSOR);
     game_object[NINJA] = create_object("sprites/ninja.png", \
     (sfVector2f){1920/2, 920}, (sfIntRect){0, 0, 168, 235}, NINJA);
+    game_object[MENU_BACK] = create_object("sprites/back.png", \
+    (sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080}, MENU_BACK);
+    game_object[MENU_OPTIONS] = create_object("sprites/options_2.png", \
+    (sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080}, MENU_OPTIONS);
+    game_object[VOLUME] = create_object("sprites/volume.png", \
+    (sfVector2f){850, 500}, (sfIntRect){0, 0, 200, 200}, VOLUME);
+    game_object[VOLUME_CHECK] = create_object("sprites/volume_check.png", \
+    (sfVector2f){850, 500}, (sfIntRect){0, 0, 200, 200}, VOLUME_CHECK);
 }
 
 void my_create_game_object(game_object_t *game_object, window_t *window)

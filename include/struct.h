@@ -23,6 +23,7 @@ typedef struct score_s
     sfText *highscore;
     sfText* score;
     char *zero;
+    char *highscore_str;
 }score_t;
 
 typedef struct music_s
@@ -42,6 +43,8 @@ typedef struct window_s
     int check_play;
     int check_options;
     int check_quit;
+    int check_back;
+    sfText* text;
 }window_t;
 
 typedef enum
@@ -57,6 +60,10 @@ typedef enum
     QUIT,
     CURSOR,
     NINJA,
+    MENU_BACK,
+    MENU_OPTIONS,
+    VOLUME,
+    VOLUME_CHECK,
     LEN
 }PARALLAX;
 

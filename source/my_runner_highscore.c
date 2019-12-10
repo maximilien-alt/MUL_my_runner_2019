@@ -8,6 +8,17 @@
 #include "../include/my.h"
 #include "../include/my.h"
 
+void my_check_highscore(score_t scores)
+{
+    int fd;
+
+    if (my_infin_cmp(scores.highscore_str, scores.zero) == 0) {
+        scores.highscore_str = scores.zero;
+        fd = open("sprites/highscore", O_WRONLY);
+        write(fd, scores.highscore_str, my_strlen(scores.highscore_str));
+    }
+}
+
 sfText *my_score(char *score, sfVector2f pos)
 {
     sfText* final_score;

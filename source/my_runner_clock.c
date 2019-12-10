@@ -12,10 +12,9 @@ void my_clock_ninja(game_object_t *game_object, \
 my_clock_t *clock, window_t *window, score_t *scores)
 {
     if (window->status != 0 && clock->seconds > 0.1) {
-        if (window->status != 3)
-            move_rect(game_object, game_object[NINJA].speed, \
-            game_object[NINJA].size_max, NINJA);
-        if (window->status != 1) {
+        move_rect(game_object, game_object[NINJA].speed, \
+        game_object[NINJA].size_max, NINJA);
+        if (window->status == 2) {
             scores->zero = my_infin_add(scores->zero, "1");
             sfText_setString(scores->score, scores->zero);
         }

@@ -10,19 +10,22 @@
 
 void my_jump(game_object_t *game_object, window_t *window)
 {
-    if (window->status == 3) {
-        game_object[NINJA].pos.x += game_object[NINJA].vel.x;
-        game_object[NINJA].pos.y += game_object[NINJA].vel.y;
-        if (game_object[NINJA].pos.y <= 925)
-            game_object[NINJA].vel.y += GRAV;
-        else {
-            window->nb_jump = 1;
-            game_object[NINJA].vel.y = 0;
-            game_object[NINJA].pos.y = 925;
-            window->status = 2;
-        }
-        sfSprite_setPosition(game_object[NINJA].sprite, game_object[NINJA].pos);
+    int check_y = 0;
+
+    if (window->status == 2)
+        check_y = 925;
+    if (window->status == 4 || window->status == 5)
+        check_y = 500;
+    game_object[NINJA].pos.x += game_object[NINJA].vel.x;
+    game_object[NINJA].pos.y += game_object[NINJA].vel.y;
+    if (game_object[NINJA].pos.y <= check_y)
+        game_object[NINJA].vel.y += GRAV;
+    else {
+        window->nb_jump = 1;
+        game_object[NINJA].vel.y = 0;
+        game_object[NINJA].pos.y = check_y;
     }
+    sfSprite_setPosition(game_object[NINJA].sprite, game_object[NINJA].pos);
 }
 
 void my_draw_jumping(window_t *window, game_object_t *game_object, \
@@ -63,4 +66,23 @@ score_t scores)
         sfRenderWindow_drawSprite(window->window, \
         game_object[i].sprite, NULL);
     sfRenderWindow_drawText(window->window, scores.highscore, NULL);
+}
+
+void my_draw_options(window_t *window, game_object_t *game_object, \
+score_t scores)
+{
+    for (int i = 0; i < PRESS_START; i += 1)
+        sfRenderWindow_drawSprite(window->window, \
+        game_object[i].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, \
+    game_object[MENU_BACK].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, \
+    game_object[MENU_OPTIONS].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, \
+    game_object[VOLUME_CHECK].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, \
+    game_object[NINJA].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, \
+    game_object[VOLUME].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, game_object[CURSOR].sprite, NULL);
 }
