@@ -44,7 +44,6 @@ typedef struct window_s
     int check_options;
     int check_quit;
     int check_back;
-    sfText* text;
 }window_t;
 
 typedef enum

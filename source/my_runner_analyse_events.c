@@ -20,14 +20,8 @@ music_t musics)
         window->status = 1;
     if ((window->status == 4) && (mouse.x > pos_x && mouse.x < pos_x + 50)
     && mouse.y > 500 && mouse.y < 700) {
-        /*game_object[VOLUME].pos.x = mouse.x - 100;
-        sfSprite_setPosition(game_object[VOLUME].sprite, \
-        game_object[VOLUME].pos);
-        mouse = sfMouse_getPositionRenderWindow(window->window);*/
         window->status = 5;
     }
-    //printf("mouse.x :%d mouse.y :%d\n", mouse.x, mouse.y);
-    //printf("pos.x + 75 :%d pos.x + 125 :%d\n", pos_x, pos_x + 50);
 }
 
 void analyse_events(window_t *window, \

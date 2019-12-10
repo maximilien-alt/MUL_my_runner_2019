@@ -8,7 +8,7 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
-sfText *my_text(void)
+/*sfText *my_text(void)
 {
     sfText* text;
     sfFont* font;
@@ -23,7 +23,7 @@ sfText *my_text(void)
     //sfText_setPosition(text, pos);
     sfText_setColor(text, sfMagenta);
     return (text);
-}
+}*/
 
 void my_runner_set_structures_next(window_t *window, \
 music_t *music, score_t *scores)
@@ -45,7 +45,6 @@ void my_runner_set_structures(window_t *window, music_t *music, score_t *scores)
     zero[0] = '0';
     zero[1] = '\0';
     window->status = 0;
-    window->text = my_text();
     window->nb_jump = 1;
     scores->highscore_str = my_highscore("sprites/highscore");
     scores->highscore = my_score(scores->highscore_str, \
