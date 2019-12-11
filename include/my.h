@@ -20,6 +20,10 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
+void my_draw_speed(window_t *window, game_object_t *game_object, \
+score_t scores);
+void my_draw_status_next(window_t *window, game_object_t *game_object, \
+score_t scores);
 void manage_mouse_moved_four(window_t *window, game_object_t *game_object, \
 sfIntRect rect, music_t musics);
 void my_draw_gravity(window_t *window, game_object_t *game_object, \

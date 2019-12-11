@@ -8,21 +8,6 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
-sfText *my_text(void)
-{
-    sfText* text;
-    sfFont* font;
-    char *str = "               CONTROLS\n\n         JUMP            SPACE\n\n         QUIT            ESCAPE\n\n\n\n\n\n\n\n       SPEED    VOLUME   GRAVITY";
-
-    font = sfFont_createFromFile("sprites/text.ttf");
-    text = sfText_create();
-    sfText_setString(text, str);
-    sfText_setFont(text, font);
-    sfText_setCharacterSize(text, 60);
-    sfText_setColor(text, sfWhite);
-    return (text);
-}
-
 void my_runner_set_structures_next(window_t *window, \
 music_t *music, score_t *scores)
 {
@@ -45,7 +30,6 @@ void my_runner_set_structures(window_t *window, music_t *music, score_t *scores)
     zero[1] = '\0';
     window->status = 0;
     window->nb_jump = 1;
-    window->text = my_text();
     scores->highscore_str = my_highscore("sprites/highscore");
     scores->highscore = my_score(scores->highscore_str, \
     (sfVector2f){50, 900});

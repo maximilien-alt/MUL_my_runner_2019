@@ -38,7 +38,6 @@ typedef struct window_s
 {
     sfRenderWindow* window;
     sfEvent event;
-    sfText *text;
     int status;
     int nb_jump;
     int check_play;

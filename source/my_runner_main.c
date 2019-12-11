@@ -33,6 +33,13 @@ window_t window, music_t musics, score_t scores)
     sfRenderWindow_destroy(window.window);
 }
 
+void my_draw_status_next(window_t *window, game_object_t *game_object, \
+score_t scores)
+{
+    if (window->status == 7)
+        my_draw_speed(window, game_object, scores);
+}
+
 void my_draw_status(window_t *window, game_object_t *game_object, \
 score_t scores)
 {
@@ -54,6 +61,7 @@ score_t scores)
         my_draw_volume(window, game_object, scores);
     if (window->status == 6)
         my_draw_gravity(window, game_object, scores);
+    my_draw_status_next(window, game_object, scores);
     sfRenderWindow_display(window->window);
 }
 

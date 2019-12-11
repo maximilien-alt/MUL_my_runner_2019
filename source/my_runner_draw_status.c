@@ -14,7 +14,7 @@ void my_jump(game_object_t *game_object, window_t *window)
 
     if (window->status == 2)
         check_y = 925;
-    if (window->status == 4 || window->status == 5 || window->status == 6)
+    if (window->status >= 4 && window->status <= 7)
         check_y = 500;
     game_object[NINJA].pos.x += game_object[NINJA].vel.x;
     game_object[NINJA].pos.y += game_object[NINJA].vel.y;
@@ -62,10 +62,10 @@ score_t scores)
     for (int i = 0; i < PRESS_START; i += 1)
         sfRenderWindow_drawSprite(window->window, \
         game_object[i].sprite, NULL);
+    sfRenderWindow_drawText(window->window, scores.highscore, NULL);
     for (int i = PLAY; i < NINJA; i += 1)
         sfRenderWindow_drawSprite(window->window, \
         game_object[i].sprite, NULL);
-    sfRenderWindow_drawText(window->window, scores.highscore, NULL);
 }
 
 void my_draw_options(window_t *window, game_object_t *game_object, \

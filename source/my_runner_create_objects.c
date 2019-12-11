@@ -45,7 +45,7 @@ sfIntRect rect, PARALLAX type)
 void my_create_game_object_three(game_object_t *game_object, window_t *window)
 {
     game_object[SPEED] = create_object("sprites/volume.png", \
-    (sfVector2f){350, 500}, (sfIntRect){400, 0, 400, 200}, SPEED);
+    (sfVector2f){250, 500}, (sfIntRect){400, 0, 400, 200}, SPEED);
     game_object[SPEED_CHECK] = create_object("sprites/volume_check.png", \
     (sfVector2f){350, 500}, (sfIntRect){0, 0, 200, 200}, SPEED_CHECK);
 }

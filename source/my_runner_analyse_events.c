@@ -19,6 +19,15 @@ sfIntRect rect, music_t musics)
         (sfVector2f){game_object[GRAVITY].pos.x, game_object[GRAVITY].pos.y});
         window->grav = (game_object[GRAVITY].pos.x - 1250) / 10;
     }
+    if (window->status == 7 && mouse.x > 350 && mouse.x < 550) {
+        game_object[SPEED].pos.x = mouse.x - 100;
+        sfSprite_setPosition(game_object[SPEED].sprite, \
+        (sfVector2f){game_object[SPEED].pos.x, game_object[SPEED].pos.y});
+        for (int i = BACK; i <= FRONT_2; i += 1) {
+            game_object[i].speed = i + \
+            (game_object[SPEED].pos.x - 250) / 5;
+        }
+    }
 }
 
 void manage_mouse_click_next(window_t *window, game_object_t *game_object, \
@@ -27,6 +36,7 @@ music_t musics)
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
     int pos_x = game_object[VOLUME].pos.x + 75;
     int gravity_pos_x = game_object[GRAVITY].pos.x + 75;
+    int speed_pos_x = game_object[SPEED].pos.x + 75;
 
     if (window->status == 4 && mouse.x > 71 && mouse.x < 300 \
     && mouse.y > 861 && mouse.y < 925)
@@ -39,6 +49,10 @@ music_t musics)
     (mouse.x > gravity_pos_x && mouse.x < gravity_pos_x + 50)
     && mouse.y > 500 && mouse.y < 700)
         window->status = 6;
+    if ((window->status == 4) && \
+    (mouse.x > speed_pos_x && mouse.x < speed_pos_x + 50)
+    && mouse.y > 500 && mouse.y < 700)
+        window->status = 7;
 }
 
 void analyse_events(window_t *window, \
@@ -60,5 +74,7 @@ game_object_t *game_object, music_t musics, score_t scores)
     if (window->status == 5 && window->event.type == sfEvtMouseButtonReleased)
         window->status = 4;
     if (window->status == 6 && window->event.type == sfEvtMouseButtonReleased)
+        window->status = 4;
+    if (window->status == 7 && window->event.type == sfEvtMouseButtonReleased)
         window->status = 4;
 }
