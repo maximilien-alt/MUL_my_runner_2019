@@ -52,6 +52,7 @@ sfIntRect rect, music_t musics)
         (sfVector2f){game_object[VOLUME].pos.x, game_object[VOLUME].pos.y});
         my_set_volumes(game_object, musics);
     }
+    manage_mouse_moved_four(window, game_object, rect, musics);
 }
 
 void manage_mouse_click(window_t *window, game_object_t *game_object, \

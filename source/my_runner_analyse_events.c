@@ -8,12 +8,25 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+void manage_mouse_moved_four(window_t *window, game_object_t *game_object, \
+sfIntRect rect, music_t musics)
+{
+    sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
+
+    if (window->status == 6 && mouse.x > 1350 && mouse.x < 1550) {
+        game_object[GRAVITY].pos.x = mouse.x - 100;
+        sfSprite_setPosition(game_object[GRAVITY].sprite, \
+        (sfVector2f){game_object[GRAVITY].pos.x, game_object[GRAVITY].pos.y});
+        window->grav = (game_object[GRAVITY].pos.x - 1250) / 10;
+    }
+}
+
 void manage_mouse_click_next(window_t *window, game_object_t *game_object, \
 music_t musics)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
     int pos_x = game_object[VOLUME].pos.x + 75;
-    int pos_y = game_object[VOLUME].pos.y;
+    int gravity_pos_x = game_object[GRAVITY].pos.x + 75;
 
     if (window->status == 4 && mouse.x > 71 && mouse.x < 300 \
     && mouse.y > 861 && mouse.y < 925)
@@ -22,6 +35,10 @@ music_t musics)
     && mouse.y > 500 && mouse.y < 700) {
         window->status = 5;
     }
+    if ((window->status == 4) && \
+    (mouse.x > gravity_pos_x && mouse.x < gravity_pos_x + 50)
+    && mouse.y > 500 && mouse.y < 700)
+        window->status = 6;
 }
 
 void analyse_events(window_t *window, \
@@ -41,5 +58,7 @@ game_object_t *game_object, music_t musics, score_t scores)
     if (window->event.type == sfEvtMouseButtonPressed)
         manage_mouse_click(window, game_object, musics);
     if (window->status == 5 && window->event.type == sfEvtMouseButtonReleased)
+        window->status = 4;
+    if (window->status == 6 && window->event.type == sfEvtMouseButtonReleased)
         window->status = 4;
 }

@@ -14,12 +14,12 @@ void my_jump(game_object_t *game_object, window_t *window)
 
     if (window->status == 2)
         check_y = 925;
-    if (window->status == 4 || window->status == 5)
+    if (window->status == 4 || window->status == 5 || window->status == 6)
         check_y = 500;
     game_object[NINJA].pos.x += game_object[NINJA].vel.x;
     game_object[NINJA].pos.y += game_object[NINJA].vel.y;
     if (game_object[NINJA].pos.y <= check_y)
-        game_object[NINJA].vel.y += GRAV;
+        game_object[NINJA].vel.y += window->grav;
     else {
         window->nb_jump = 1;
         game_object[NINJA].vel.y = 0;
@@ -78,11 +78,14 @@ score_t scores)
     game_object[MENU_BACK].sprite, NULL);
     sfRenderWindow_drawSprite(window->window, \
     game_object[MENU_OPTIONS].sprite, NULL);
-    sfRenderWindow_drawSprite(window->window, \
-    game_object[VOLUME_CHECK].sprite, NULL);
+    for (int i = VOLUME_CHECK; i <= SPEED_CHECK; i += 2)
+        sfRenderWindow_drawSprite(window->window, \
+        game_object[i].sprite, NULL);
     sfRenderWindow_drawSprite(window->window, \
     game_object[NINJA].sprite, NULL);
-    sfRenderWindow_drawSprite(window->window, \
-    game_object[VOLUME].sprite, NULL);
+    for (int i = VOLUME; i <= SPEED; i += 2)
+        sfRenderWindow_drawSprite(window->window, \
+        game_object[i].sprite, NULL);
     sfRenderWindow_drawSprite(window->window, game_object[CURSOR].sprite, NULL);
+    //sfRenderWindow_drawText(window->window, window->text, NULL);
 }

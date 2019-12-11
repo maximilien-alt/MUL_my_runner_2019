@@ -42,6 +42,14 @@ sfIntRect rect, PARALLAX type)
     return (game_object);
 }
 
+void my_create_game_object_three(game_object_t *game_object, window_t *window)
+{
+    game_object[SPEED] = create_object("sprites/volume.png", \
+    (sfVector2f){350, 500}, (sfIntRect){400, 0, 400, 200}, SPEED);
+    game_object[SPEED_CHECK] = create_object("sprites/volume_check.png", \
+    (sfVector2f){350, 500}, (sfIntRect){0, 0, 200, 200}, SPEED_CHECK);
+}
+
 void my_create_game_object_next(game_object_t *game_object, window_t *window)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
@@ -59,6 +67,11 @@ void my_create_game_object_next(game_object_t *game_object, window_t *window)
     (sfVector2f){850, 500}, (sfIntRect){0, 0, 200, 200}, VOLUME);
     game_object[VOLUME_CHECK] = create_object("sprites/volume_check.png", \
     (sfVector2f){850, 500}, (sfIntRect){0, 0, 200, 200}, VOLUME_CHECK);
+    game_object[GRAVITY] = create_object("sprites/volume.png", \
+    (sfVector2f){1350, 500}, (sfIntRect){200, 0, 200, 200}, GRAVITY);
+    game_object[GRAVITY_CHECK] = create_object("sprites/volume_check.png", \
+    (sfVector2f){1350, 500}, (sfIntRect){0, 0, 200, 200}, GRAVITY_CHECK);
+    my_create_game_object_three(game_object, window);
 }
 
 void my_create_game_object(game_object_t *game_object, window_t *window)

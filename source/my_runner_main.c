@@ -52,6 +52,8 @@ score_t scores)
         my_draw_options(window, game_object, scores);
     if (window->status == 5)
         my_draw_volume(window, game_object, scores);
+    if (window->status == 6)
+        my_draw_gravity(window, game_object, scores);
     sfRenderWindow_display(window->window);
 }
 

@@ -38,12 +38,14 @@ typedef struct window_s
 {
     sfRenderWindow* window;
     sfEvent event;
+    sfText *text;
     int status;
     int nb_jump;
     int check_play;
     int check_options;
     int check_quit;
     int check_back;
+    int grav;
 }window_t;
 
 typedef enum
@@ -63,6 +65,10 @@ typedef enum
     MENU_OPTIONS,
     VOLUME,
     VOLUME_CHECK,
+    GRAVITY,
+    GRAVITY_CHECK,
+    SPEED,
+    SPEED_CHECK,
     LEN
 }PARALLAX;
 
