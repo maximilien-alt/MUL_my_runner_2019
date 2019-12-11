@@ -8,8 +8,23 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+sfText *my_text(void)
+{
+    sfText* text;
+    sfFont* font;
+    char *str = "               CONTROLS\n\n         JUMP            SPACE\n\n         QUIT            ESCAPE\n\n\n\n\n\n\n\n       SPEED    VOLUME   GRAVITY";
+
+    font = sfFont_createFromFile("sprites/text.ttf");
+    text = sfText_create();
+    sfText_setString(text, str);
+    sfText_setFont(text, font);
+    sfText_setCharacterSize(text, 60);
+    sfText_setColor(text, sfWhite);
+    return (text);
+}
+
 void my_runner_set_structures_next(window_t *window, \
-music_t *music, score_t *scores)
+music_t *music, score_t *scores, my_clock_t *clock)
 {
     window->check_play = 0;
     window->check_options = 0;
@@ -19,15 +34,20 @@ music_t *music, score_t *scores)
     sfMusic_setVolume(music->menu_button, 50);
     sfMusic_setVolume(music->playing, 50);
     sfMusic_setVolume(music->menu, 50);
+    sfMusic_play(music->menu);
     window->grav = 10;
+    clock->clock = sfClock_create();
+    window->check_map = 0;
 }
 
-void my_runner_set_structures(window_t *window, music_t *music, score_t *scores)
+void my_runner_set_structures(window_t *window, music_t *music, \
+score_t *scores, my_clock_t *clock)
 {
     char zero[2];
 
     zero[0] = '0';
     zero[1] = '\0';
+    window->window = create_window(30);
     window->status = 0;
     window->nb_jump = 1;
     scores->highscore_str = my_highscore("sprites/highscore");
@@ -41,5 +61,5 @@ void my_runner_set_structures(window_t *window, music_t *music, score_t *scores)
     music->menu = sfMusic_createFromFile("music/menu.ogg");
     sfMusic_setLoop(music->playing, sfTrue);
     sfMusic_setLoop(music->menu, sfTrue);
-    my_runner_set_structures_next(window, music, scores);
+    my_runner_set_structures_next(window, music, scores, clock);
 }

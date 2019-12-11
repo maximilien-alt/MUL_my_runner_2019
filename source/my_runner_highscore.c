@@ -8,6 +8,14 @@
 #include "../include/my.h"
 #include "../include/my.h"
 
+void my_destroy_map(window_t window, game_object_t *map, int nb_elems)
+{
+    for (int i = 0; i < nb_elems; i += 1) {
+        sfTexture_destroy(map[i].texture);
+        sfSprite_destroy(map[i].sprite);
+    }
+}
+
 void my_check_highscore(score_t scores)
 {
     int fd;

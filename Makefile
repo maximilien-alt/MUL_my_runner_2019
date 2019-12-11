@@ -38,7 +38,8 @@ SRC =   lib/my/infin_add.c	\
 		lib/my/my_strstr.c	\
 		lib/my/my_strupcase.c	\
 		lib/my/infin_cmp.c	\
-		lib/my/my_swap.c
+		lib/my/my_swap.c	\
+		lib/my/my_str_to_word_array.c
 
 NAME    =   my_runner
 

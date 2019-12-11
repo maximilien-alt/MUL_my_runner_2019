@@ -65,25 +65,15 @@ score_t scores)
     sfRenderWindow_display(window->window);
 }
 
-void main(int ac, char *av[])
+int main(int ac, char *av[])
 {
     game_object_t game_object[LEN];
     window_t window;
-    my_clock_t clock;
     music_t musics;
     score_t score;
 
-    window.window = create_window(30);
-    my_runner_set_structures(&window, &musics, &score);
-    my_create_game_object(game_object, &window);
-    clock.clock = sfClock_create();
-    sfMusic_play(musics.menu);
-    while (sfRenderWindow_isOpen(window.window)) {
-        while (sfRenderWindow_pollEvent(window.window, &window.event))
-            analyse_events(&window, game_object, musics, score);
-        my_jump(game_object, &window);
-        my_clock(game_object, &clock, &window, &score);
-        my_draw_status(&window, game_object, score);
-    }
-    my_destoy_object(game_object, window, musics, score);
+    if (my_error_handling(ac, av) == 84)
+        return (84);
+    window.map = get_map(av[1]);
+    my_loop(window, game_object, musics, score);
 }

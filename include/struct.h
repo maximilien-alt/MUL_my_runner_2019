@@ -11,42 +11,6 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
-typedef struct my_clock_s
-{
-    sfClock *clock;
-    sfTime time;
-    float seconds;
-}my_clock_t;
-
-typedef struct score_s
-{
-    sfText *highscore;
-    sfText* score;
-    char *zero;
-    char *highscore_str;
-}score_t;
-
-typedef struct music_s
-{
-    sfMusic *game_start;
-    sfMusic *menu_button;
-    sfMusic *playing;
-    sfMusic *menu;
-}music_t;
-
-typedef struct window_s
-{
-    sfRenderWindow* window;
-    sfEvent event;
-    int status;
-    int nb_jump;
-    int check_play;
-    int check_options;
-    int check_quit;
-    int check_back;
-    int grav;
-}window_t;
-
 typedef enum
 {
     BACK_1,
@@ -82,5 +46,45 @@ typedef struct game_object_s
     sfVector2f vel;
     sfIntRect rect;
 }game_object_t;
+
+typedef struct my_clock_s
+{
+    sfClock *clock;
+    sfTime time;
+    float seconds;
+}my_clock_t;
+
+typedef struct score_s
+{
+    sfText *highscore;
+    sfText* score;
+    char *zero;
+    char *highscore_str;
+}score_t;
+
+typedef struct music_s
+{
+    sfMusic *game_start;
+    sfMusic *menu_button;
+    sfMusic *playing;
+    sfMusic *menu;
+}music_t;
+
+typedef struct window_s
+{
+    sfRenderWindow* window;
+    sfEvent event;
+    int status;
+    int nb_jump;
+    int check_play;
+    int check_options;
+    int check_quit;
+    int check_back;
+    int grav;
+    char **map;
+    int check_map;
+    game_object_t *map_object;
+}window_t;
+
 
 #endif /* STRUCT_H_ */

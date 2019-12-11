@@ -20,6 +20,17 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
+void my_destroy_map(window_t window, game_object_t *map, int nb_elems);
+game_object_t create_object(char *filepath, sfVector2f pos, \
+sfIntRect rect, PARALLAX type);
+void my_destoy_object(game_object_t *game_object, \
+window_t window, music_t musics, score_t scores);
+void my_draw_status(window_t *window, game_object_t *game_object, \
+score_t scores);
+void my_loop(window_t window, game_object_t *game_object, \
+music_t musics, score_t score);
+char **get_map(char *filepath);
+int my_error_handling(int ac, char *av[]);
 void my_draw_speed(window_t *window, game_object_t *game_object, \
 score_t scores);
 void my_draw_status_next(window_t *window, game_object_t *game_object, \
@@ -43,7 +54,8 @@ char *my_highscore(char *filepath);
 void my_draw_jumping(window_t *window, game_object_t *game_object, \
 score_t scores);
 void my_music_button(music_t musics, window_t *window, int check);
-void my_runner_set_structures(window_t *window, music_t *music, score_t *score);
+void my_runner_set_structures(window_t *window, music_t *music, \
+score_t *score, my_clock_t *clock);
 void my_jump(game_object_t *game_object, window_t *window);
 void my_draw_menu(window_t *window, game_object_t *game_object, \
 score_t scores);

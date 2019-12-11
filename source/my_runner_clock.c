@@ -8,6 +8,15 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+void my_rect_map(window_t *window, game_object_t *game_object)
+{
+    for (int i = 0; i < window->check_map; i += 1) {
+        window->map_object[i].pos.x -= game_object[FRONT_2].speed;
+        sfSprite_setPosition(window->map_object[i].sprite, \
+        window->map_object[i].pos);
+    }
+}
+
 void my_clock_ninja(game_object_t *game_object, \
 my_clock_t *clock, window_t *window, score_t *scores)
 {
@@ -32,6 +41,8 @@ window_t *window, score_t *scores)
         for (int i = 0; i < PRESS_START; i += 1)
             move_rect(game_object, game_object[i].speed, \
             game_object[i].size_max, i);
+            if (window->status == 2)
+                my_rect_map(window, game_object);
     }
     if (window->status == 0 && clock->seconds > 0.15) {
         move_rect(game_object, game_object[PRESS_START].speed, \
