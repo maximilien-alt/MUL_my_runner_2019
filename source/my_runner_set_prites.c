@@ -8,6 +8,14 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+void my_game_over(window_t *window, music_t musics, score_t scores)
+{
+    my_check_highscore(scores);
+    sfSound_play(musics.over);
+    window->status = 8;
+    sfMusic_pause(musics.playing);
+}
+
 sfText *my_text(void)
 {
     sfText* text;
@@ -26,14 +34,21 @@ sfText *my_text(void)
 void my_runner_set_structures_next(window_t *window, \
 music_t *music, score_t *scores, my_clock_t *clock)
 {
+    music->buffer = sfSoundBuffer_createFromFile\
+    ("music/game_over.ogg");
+
+    music->over = sfSound_create();
+    sfSound_setBuffer(music->over, music->buffer);
     window->check_play = 0;
     window->check_options = 0;
     window->check_quit = 0;
     window->check_back = 0;
+    window->check_over = 0;
     sfMusic_setVolume(music->game_start, 50);
     sfMusic_setVolume(music->menu_button, 50);
     sfMusic_setVolume(music->playing, 50);
     sfMusic_setVolume(music->menu, 50);
+    sfSound_setVolume(music->over, 50);
     sfMusic_play(music->menu);
     window->grav = 10;
     clock->clock = sfClock_create();

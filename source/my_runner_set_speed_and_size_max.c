@@ -18,6 +18,8 @@ void my_set_volumes(game_object_t *game_object, music_t music)
     (game_object[VOLUME].pos.x - 750) / 2);
     sfMusic_setVolume(music.menu, \
     (game_object[VOLUME].pos.x - 750) / 2);
+    sfSound_setVolume(music.over, \
+    (game_object[VOLUME].pos.x - 750) / 2);
 }
 
 int my_speed(int type)

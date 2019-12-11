@@ -14,24 +14,25 @@ int complete_my_map(int cursor, int digit, window_t *window, game_object_t *map)
 
     if (window->map[cursor][digit] == '1') {
         map[window->check_map] = create_object("sprites/ground.png", vector, \
-        (sfIntRect){0, 0, 40, 40}, window->check_map);
+        (sfIntRect){0, 0, 40, 40}, 1);
         window->check_map += 1;
     }
     if (window->map[cursor][digit] == '2') {
         map[window->check_map] = create_object("sprites/bloc.png", vector, \
-        (sfIntRect){0, 0, 40, 40}, window->check_map);
+        (sfIntRect){0, 0, 40, 40}, 2);
         window->check_map += 1;
     }
     if (window->map[cursor][digit] == '3') {
         map[window->check_map] = create_object("sprites/pics.png", vector, \
-        (sfIntRect){0, 0, 40, 40}, window->check_map);
+        (sfIntRect){0, 0, 40, 40}, 3);
         window->check_map += 1;
     }
 }
 
-void my_create_map(game_object_t *map, window_t *window, \
-int nb_elems)
+void my_create_map(game_object_t *map, window_t *window)
 {
+    window->check_map = 0;
+
     for (int cursor = 0; window->map[cursor]; cursor += 1) {
         for (int digit = 0; window->map[cursor][digit]; digit += 1)
             complete_my_map(cursor, digit, window, map);
@@ -67,12 +68,12 @@ music_t musics, score_t score)
 
     my_runner_set_structures(&window, &musics, &score, &clock);
     my_create_game_object(game_object, &window);
-    my_create_map(map, &window, nb_elems(window.map));
+    my_create_map(map, &window);
     window.map_object = map;
     while (sfRenderWindow_isOpen(window.window)) {
         while (sfRenderWindow_pollEvent(window.window, &window.event))
             analyse_events(&window, game_object, musics, score);
-        my_jump(game_object, &window);
+        my_jump(game_object, &window, musics, score);
         my_clock(game_object, &clock, &window, &score);
         my_draw_status(&window, game_object, score);
     }

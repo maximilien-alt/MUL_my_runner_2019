@@ -20,6 +20,11 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
+void my_create_map(game_object_t *map, window_t *window);
+void my_game_over(window_t *window, music_t musics, score_t scores);
+void my_draw_game_over(window_t *window, game_object_t *game_object, \
+score_t scores);
+int get_my_position(window_t *window, game_object_t *game_object);
 void my_destroy_map(window_t window, game_object_t *map, int nb_elems);
 game_object_t create_object(char *filepath, sfVector2f pos, \
 sfIntRect rect, PARALLAX type);
@@ -56,7 +61,8 @@ score_t scores);
 void my_music_button(music_t musics, window_t *window, int check);
 void my_runner_set_structures(window_t *window, music_t *music, \
 score_t *score, my_clock_t *clock);
-void my_jump(game_object_t *game_object, window_t *window);
+void my_jump(game_object_t *game_object, window_t *window, \
+music_t musics, score_t scores);
 void my_draw_menu(window_t *window, game_object_t *game_object, \
 score_t scores);
 void my_draw_playing(window_t *window, game_object_t *game_object, \
@@ -70,7 +76,8 @@ music_t musics);
 void manage_mouse_moved(window_t *window, game_object_t *game_object, \
 sfIntRect rect, music_t musics);
 sfText* my_text(void);
-void manage_key_pressed(window_t *window, game_object_t *game_object);
+void manage_key_pressed(window_t *window, game_object_t *game_object, \
+music_t musics, score_t *scores);
 sfText *my_press_space(void);
 void my_create_game_object(game_object_t *game_object, window_t *window);
 sfRenderWindow *create_window(int nb);

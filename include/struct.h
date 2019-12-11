@@ -68,6 +68,8 @@ typedef struct music_s
     sfMusic *menu_button;
     sfMusic *playing;
     sfMusic *menu;
+    sfSound *over;
+    sfSoundBuffer *buffer;
 }music_t;
 
 typedef struct window_s
@@ -80,6 +82,7 @@ typedef struct window_s
     int check_options;
     int check_quit;
     int check_back;
+    int check_over;
     int grav;
     char **map;
     int check_map;

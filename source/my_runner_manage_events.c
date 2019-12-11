@@ -98,7 +98,8 @@ sfIntRect rect, music_t musics)
     manage_mouse_moved_three(window, game_object, rect, musics);
 }
 
-void manage_key_pressed(window_t *window, game_object_t *game_object)
+void manage_key_pressed(window_t *window, game_object_t *game_object, \
+music_t musics, score_t *scores)
 {
     if (window->status == 0 && window->event.key.code == sfKeySpace)
         window->status = 1;
@@ -107,5 +108,12 @@ void manage_key_pressed(window_t *window, game_object_t *game_object)
     window->nb_jump != 0) {
         game_object[NINJA].vel.y = -70;
         window->nb_jump -= 1;
+    }
+    if (window->status == 8 && window->event.key.code == sfKeyR) {
+        sfMusic_play(musics.playing);
+        scores->zero = "0";
+        sfText_setString(scores->score, scores->zero);
+        my_create_map(window->map_object, window);
+        window->status = 2;
     }
 }

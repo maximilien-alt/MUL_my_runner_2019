@@ -8,6 +8,21 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+int get_my_position(window_t *window, game_object_t *game_object)
+{
+    int ninja_x = game_object[NINJA].pos.x;
+    int ninja_y = game_object[NINJA].pos.y;
+
+    for (int cursor = 0; cursor < window->check_map; cursor += 1) {
+        if (ninja_x >= window->map_object[cursor].pos.x && \
+        ninja_x < window->map_object[cursor].pos.x + 40 && \
+        ninja_y + 90 <= window->map_object[cursor].pos.y && \
+        window->map_object[cursor].type != 3)
+            return (window->map_object[cursor].pos.y - 90);
+    }
+    return (1800);
+}
+
 char **get_map(char *filepath)
 {
     char **map;

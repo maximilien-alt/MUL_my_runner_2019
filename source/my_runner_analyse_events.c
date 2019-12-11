@@ -68,7 +68,7 @@ game_object_t *game_object, music_t musics, score_t scores)
     if (window->event.type == sfEvtMouseMoved && window->status != 0)
         manage_mouse_moved(window, game_object, rect, musics);
     if (window->event.type == sfEvtKeyPressed)
-        manage_key_pressed(window, game_object);
+        manage_key_pressed(window, game_object, musics, &scores);
     if (window->event.type == sfEvtMouseButtonPressed)
         manage_mouse_click(window, game_object, musics);
     if (window->status == 5 && window->event.type == sfEvtMouseButtonReleased)

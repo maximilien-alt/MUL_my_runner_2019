@@ -28,6 +28,8 @@ window_t window, music_t musics, score_t scores)
     sfMusic_destroy(musics.menu_button);
     sfMusic_destroy(musics.game_start);
     sfMusic_destroy(musics.menu);
+    sfSound_destroy(musics.over);
+    sfSoundBuffer_destroy(musics.buffer);
     sfText_destroy(scores.highscore);
     sfText_destroy(scores.score);
     sfRenderWindow_destroy(window.window);
@@ -38,6 +40,8 @@ score_t scores)
 {
     if (window->status == 7)
         my_draw_speed(window, game_object, scores);
+    if (window->status == 8)
+        my_draw_game_over(window, game_object, scores);
 }
 
 void my_draw_status(window_t *window, game_object_t *game_object, \
