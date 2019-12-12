@@ -8,7 +8,8 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
-int get_my_position(window_t *window, game_object_t *game_object)
+int get_my_position(window_t *window, game_object_t *game_object, \
+music_t musics)
 {
     int ninja_x = game_object[NINJA].pos.x;
     int ninja_y = game_object[NINJA].pos.y;
@@ -23,8 +24,11 @@ int get_my_position(window_t *window, game_object_t *game_object)
         ninja_x < window->map_object[cursor].pos.x + 40 && \
         ninja_y >= window->map_object[cursor].pos.y - 90 && \
         ninja_y <= window->map_object[cursor].pos.y && \
-        window->map_object[cursor].type == 3)
+        window->map_object[cursor].type == 3) {
             window->status = 8;
+            sfSound_play(musics.over);
+            sfMusic_pause(musics.playing);
+        }
     }
     return (1800);
 }

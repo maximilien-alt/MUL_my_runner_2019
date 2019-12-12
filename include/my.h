@@ -25,7 +25,8 @@ void my_create_map(game_object_t *map, window_t *window);
 void my_game_over(window_t *window, music_t musics, score_t scores);
 void my_draw_game_over(window_t *window, game_object_t *game_object, \
 score_t scores);
-int get_my_position(window_t *window, game_object_t *game_object);
+int get_my_position(window_t *window, game_object_t *game_object, \
+music_t musics);
 void my_destroy_map(window_t window, game_object_t *map, int nb_elems);
 game_object_t create_object(char *filepath, sfVector2f pos, \
 sfIntRect rect, PARALLAX type);

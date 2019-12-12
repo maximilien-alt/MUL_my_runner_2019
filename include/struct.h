@@ -32,6 +32,7 @@ typedef enum
     GRAVITY_CHECK,
     SPEED,
     SPEED_CHECK,
+    GAME_OVER,
     LEN
 }PARALLAX;
 
@@ -87,6 +88,7 @@ typedef struct window_s
     char **map;
     int check_map;
     game_object_t *map_object;
+    sfText *text;
 }window_t;
 
 

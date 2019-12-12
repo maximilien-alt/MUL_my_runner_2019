@@ -48,6 +48,8 @@ void my_create_game_object_three(game_object_t *game_object, window_t *window)
     (sfVector2f){250, 500}, (sfIntRect){400, 0, 400, 200}, SPEED);
     game_object[SPEED_CHECK] = create_object("sprites/volume_check.png", \
     (sfVector2f){350, 500}, (sfIntRect){0, 0, 200, 200}, SPEED_CHECK);
+    game_object[GAME_OVER] = create_object("sprites/game_over.png", \
+    (sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080}, GAME_OVER);
 }
 
 void my_create_game_object_next(game_object_t *game_object, window_t *window)

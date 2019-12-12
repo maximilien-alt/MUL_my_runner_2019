@@ -14,7 +14,7 @@ music_t musics, score_t scores)
     int check_y = 0;
 
     if (window->status == 2)
-        check_y = get_my_position(window, game_object);
+        check_y = get_my_position(window, game_object, musics);
     if (game_object[NINJA].pos.y >= 1080)
         my_game_over(window, musics, scores);
     else
@@ -99,5 +99,4 @@ score_t scores)
         sfRenderWindow_drawSprite(window->window, \
         game_object[i].sprite, NULL);
     sfRenderWindow_drawSprite(window->window, game_object[CURSOR].sprite, NULL);
-    //sfRenderWindow_drawText(window->window, window->text, NULL);
 }

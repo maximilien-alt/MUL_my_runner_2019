@@ -24,7 +24,7 @@ void my_set_volumes(game_object_t *game_object, music_t music)
 
 int my_speed(int type)
 {
-    if (type == PRESS_START || type == PLAY)
+    if (type == PRESS_START || type == PLAY || type == GAME_OVER)
         return (1920);
     if (type == NINJA)
         return (168);
@@ -37,6 +37,8 @@ int my_size_max(int type)
         return (9600);
     if (type == NINJA)
         return (1512);
+    if (type == GAME_OVER)
+        return (1921);
     return (WIDTH);
 }
 

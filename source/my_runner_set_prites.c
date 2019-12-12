@@ -20,7 +20,7 @@ sfText *my_text(void)
 {
     sfText* text;
     sfFont* font;
-    char *str = "               CONTROLS\n\n         JUMP            SPACE\n\n         QUIT            ESCAPE\n\n\n\n\n\n\n\n       SPEED    VOLUME   GRAVITY";
+    char *str = "\n\n\n\n\n\n\n\n              GAME OVER!";
 
     font = sfFont_createFromFile("sprites/text.ttf");
     text = sfText_create();
@@ -53,6 +53,7 @@ music_t *music, score_t *scores, my_clock_t *clock)
     window->grav = 10;
     clock->clock = sfClock_create();
     window->check_map = 0;
+    window->text = my_text();
 }
 
 void my_runner_set_structures(window_t *window, music_t *music, \
