@@ -20,6 +20,8 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
+void manage_mouse_click_three(window_t *window, game_object_t *game_object, \
+music_t musics, score_t scores);
 void please_no_lag(window_t *window);
 void my_create_map(game_object_t *map, window_t *window);
 void my_game_over(window_t *window, music_t musics, score_t scores);
@@ -46,7 +48,7 @@ void manage_mouse_moved_four(window_t *window, game_object_t *game_object, \
 sfIntRect rect, music_t musics);
 void my_draw_gravity(window_t *window, game_object_t *game_object, \
 score_t scores);
-void my_check_highscore(score_t scores);
+void my_check_highscore(score_t *scores);
 void my_set_volumes(game_object_t *game_object, music_t music);
 void my_draw_volume(window_t *window, game_object_t *game_object, \
 score_t scores);
@@ -74,7 +76,7 @@ int max_size, int status);
 int my_speed(int type);
 int my_size_max(int type);
 void manage_mouse_click(window_t *window, game_object_t *game_object, \
-music_t musics);
+music_t musics, score_t scores);
 void manage_mouse_moved(window_t *window, game_object_t *game_object, \
 sfIntRect rect, music_t musics);
 sfText* my_text(void);

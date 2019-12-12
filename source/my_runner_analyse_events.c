@@ -8,6 +8,20 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+void manage_mouse_moved_five(window_t *window, game_object_t *game_object, \
+sfIntRect rect, music_t musics)
+{
+    sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
+
+    if (window->status == 8 && mouse.x >= 90 && mouse.x <= 325 && \
+    mouse.y >= 850 && mouse.y <= 930) {
+        sfSprite_setTextureRect(game_object[MENU].sprite, \
+        (sfIntRect){1920, 0, 1920, 1080});
+    } else
+        sfSprite_setTextureRect(game_object[MENU].sprite, \
+        (sfIntRect){0, 0, 1920, 1080});
+}
+
 void manage_mouse_moved_four(window_t *window, game_object_t *game_object, \
 sfIntRect rect, music_t musics)
 {
@@ -27,6 +41,23 @@ sfIntRect rect, music_t musics)
             game_object[i].speed = i + \
             (game_object[SPEED].pos.x - 250) / 5;
         }
+    }
+    manage_mouse_moved_five(window, game_object, rect, musics);
+}
+
+void manage_mouse_click_three(window_t *window, game_object_t *game_object, \
+music_t musics, score_t scores)
+{
+    sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
+
+    if (window->status == 8 && mouse.x >= 90 && mouse.x <= 325 && \
+    mouse.y >= 850 && mouse.y <= 930) {
+        for (int i = BACK; i <= FRONT_2; i += 1)
+            game_object[i].speed -= 10;
+        my_check_highscore(&scores);
+        my_create_map(window->map_object, window);
+        window->status = 1;
+        sfMusic_play(musics.menu);
     }
 }
 
@@ -62,7 +93,7 @@ game_object_t *game_object, music_t musics, score_t scores)
 
     if (window->event.type == sfEvtClosed || \
     (sfKeyboard_isKeyPressed(sfKeyEscape))) {
-        my_check_highscore(scores);
+        my_check_highscore(&scores);
         sfRenderWindow_close(window->window);
     }
     if (window->event.type == sfEvtMouseMoved && window->status != 0)
@@ -70,7 +101,7 @@ game_object_t *game_object, music_t musics, score_t scores)
     if (window->event.type == sfEvtKeyPressed)
         manage_key_pressed(window, game_object, musics, &scores);
     if (window->event.type == sfEvtMouseButtonPressed)
-        manage_mouse_click(window, game_object, musics);
+        manage_mouse_click(window, game_object, musics, scores);
     if (window->status == 5 && window->event.type == sfEvtMouseButtonReleased)
         window->status = 4;
     if (window->status == 6 && window->event.type == sfEvtMouseButtonReleased)

@@ -21,6 +21,7 @@ score_t scores)
     sfRenderWindow_drawText(window->window, scores.score, NULL);
     sfRenderWindow_drawSprite(window->window, \
     game_object[GAME_OVER].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, game_object[MENU].sprite, NULL);
     sfRenderWindow_drawSprite(window->window, game_object[CURSOR].sprite, NULL);
 }
 

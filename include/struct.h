@@ -33,6 +33,7 @@ typedef enum
     SPEED,
     SPEED_CHECK,
     GAME_OVER,
+    MENU,
     LEN
 }PARALLAX;
 
@@ -85,6 +86,7 @@ typedef struct window_s
     int check_back;
     int check_over;
     int grav;
+    int check_speed;
     char **map;
     int check_map;
     game_object_t *map_object;

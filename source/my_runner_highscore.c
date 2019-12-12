@@ -26,14 +26,16 @@ void my_destroy_map(window_t window, game_object_t *map, int nb_elems)
     }
 }
 
-void my_check_highscore(score_t scores)
+void my_check_highscore(score_t *scores)
 {
     int fd;
 
-    if (my_infin_cmp(scores.highscore_str, scores.zero) == 0) {
-        scores.highscore_str = scores.zero;
+    if (my_infin_cmp(scores->highscore_str, scores->zero) == 0) {
+        scores->highscore_str = scores->zero;
+        sfText_setString(scores->highscore, scores->zero);
         fd = open("sprites/highscore", O_WRONLY);
-        write(fd, scores.highscore_str, my_strlen(scores.highscore_str));
+        write(fd, scores->highscore_str, my_strlen(scores->highscore_str));
+        close(fd);
     }
 }
 

@@ -56,7 +56,7 @@ sfIntRect rect, music_t musics)
 }
 
 void manage_mouse_click(window_t *window, game_object_t *game_object, \
-music_t musics)
+music_t musics, score_t scores)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
 
@@ -76,6 +76,7 @@ music_t musics)
     && mouse.y > 532 && mouse.y < 588)
         window->status = 4;
     manage_mouse_click_next(window, game_object, musics);
+    manage_mouse_click_three(window, game_object, musics, scores);
 }
 
 void manage_mouse_moved(window_t *window, game_object_t *game_object, \
@@ -110,7 +111,7 @@ music_t musics, score_t *scores)
         window->nb_jump -= 1;
     }
     if (window->status == 8) {
-        my_check_highscore(*scores);
+        my_check_highscore(scores);
         if (window->event.key.code == sfKeyR) {
             my_create_map(window->map_object, window);
             window->status = 2;

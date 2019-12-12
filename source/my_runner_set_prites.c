@@ -10,7 +10,7 @@
 
 void my_game_over(window_t *window, music_t musics, score_t scores)
 {
-    my_check_highscore(scores);
+    my_check_highscore(&scores);
     sfSound_play(musics.over);
     window->status = 8;
     sfMusic_pause(musics.playing);
@@ -20,7 +20,7 @@ sfText *my_text(void)
 {
     sfText* text;
     sfFont* font;
-    char *str = "\n\n\n\n\n\n\n\n              GAME OVER!";
+    char *str = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  MENU";
 
     font = sfFont_createFromFile("sprites/text.ttf");
     text = sfText_create();
@@ -54,6 +54,7 @@ music_t *music, score_t *scores, my_clock_t *clock)
     clock->clock = sfClock_create();
     window->check_map = 0;
     window->text = my_text();
+    window->check_speed = 0;
 }
 
 void my_runner_set_structures(window_t *window, music_t *music, \
