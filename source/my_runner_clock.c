@@ -29,6 +29,8 @@ my_clock_t *clock, window_t *window, score_t *scores)
             scores->zero = my_infin_add(scores->zero, "1");
             sfText_setString(scores->score, scores->zero);
         }
+        if (window->status == 8)
+            scores->zero = "0";
         sfClock_restart(clock->clock);
     }
     if (window->status != 0 && clock->seconds > 0.001)

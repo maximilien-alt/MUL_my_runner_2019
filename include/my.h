@@ -20,6 +20,7 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
+void please_no_lag(window_t *window);
 void my_create_map(game_object_t *map, window_t *window);
 void my_game_over(window_t *window, music_t musics, score_t scores);
 void my_draw_game_over(window_t *window, game_object_t *game_object, \

@@ -8,6 +8,16 @@
 #include "../include/my.h"
 #include "../include/my.h"
 
+void please_no_lag(window_t *window)
+{
+    for (int i = 0; i < window->check_map; i += 1) {
+        if (window->map_object[i].pos.x < - 20) {
+            //sfSprite_destroy(window->map_object[i].sprite);
+            sfTexture_destroy(window->map_object[i].texture);
+        }
+    }
+}
+
 void my_destroy_map(window_t window, game_object_t *map, int nb_elems)
 {
     for (int i = 0; i < nb_elems; i += 1) {

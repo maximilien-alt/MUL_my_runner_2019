@@ -19,6 +19,12 @@ int get_my_position(window_t *window, game_object_t *game_object)
         ninja_y + 90 <= window->map_object[cursor].pos.y && \
         window->map_object[cursor].type != 3)
             return (window->map_object[cursor].pos.y - 90);
+        if (ninja_x >= window->map_object[cursor].pos.x && \
+        ninja_x < window->map_object[cursor].pos.x + 40 && \
+        ninja_y >= window->map_object[cursor].pos.y - 90 && \
+        ninja_y <= window->map_object[cursor].pos.y && \
+        window->map_object[cursor].type == 3)
+            window->status = 8;
     }
     return (1800);
 }

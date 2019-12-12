@@ -109,11 +109,12 @@ music_t musics, score_t *scores)
         game_object[NINJA].vel.y = -70;
         window->nb_jump -= 1;
     }
-    if (window->status == 8 && window->event.key.code == sfKeyR) {
-        sfMusic_play(musics.playing);
-        scores->zero = "0";
-        sfText_setString(scores->score, scores->zero);
-        my_create_map(window->map_object, window);
-        window->status = 2;
+    if (window->status == 8) {
+        my_check_highscore(*scores);
+        if (window->event.key.code == sfKeyR) {
+            my_create_map(window->map_object, window);
+            window->status = 2;
+            sfMusic_play(musics.playing);
+        }
     }
 }
