@@ -8,6 +8,21 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+void my_draw_victory(window_t *window, game_object_t *game_object, \
+score_t scores)
+{
+    for (int i = 0; i < PRESS_START; i += 1)
+        sfRenderWindow_drawSprite(window->window, \
+        game_object[i].sprite, NULL);
+    for (int i = 0; i < window->check_map; i += 1) {
+        sfRenderWindow_drawSprite(window->window, \
+        window->map_object[i].sprite, NULL);
+    }
+    sfRenderWindow_drawText(window->window, scores.score, NULL);
+    sfRenderWindow_drawSprite(window->window, game_object[MENU].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, game_object[CURSOR].sprite, NULL);
+}
+
 void my_draw_game_over(window_t *window, game_object_t *game_object, \
 score_t scores)
 {

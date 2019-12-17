@@ -58,7 +58,6 @@ score_t scores)
         window->map_object[i].pos.x >= -20)
             sfRenderWindow_drawSprite(window->window, \
             window->map_object[i].sprite, NULL);
-        // please_no_lag(window);
     }
     for (int i = NINJA; i >= CURSOR; i += -1)
         sfRenderWindow_drawSprite(window->window, \

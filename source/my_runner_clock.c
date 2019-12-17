@@ -28,13 +28,14 @@ my_clock_t *clock, window_t *window, score_t *scores)
             sfText_setString(scores->score, scores->zero);
         }
         sfClock_restart(clock->clock);
-    } else if (window->status != 0 && clock->seconds > 1.0) {
-        if (window->status == 8) {
+    } else if (window->status != 0 && clock->seconds > 0.01) {
+        if (window->status == 8 || window->status == 9)
             scores->zero = "0";
+        if (clock->seconds > 1.0) {
             move_rect(game_object, game_object[GAME_OVER].speed, \
             game_object[GAME_OVER].size_max, GAME_OVER);
+            sfClock_restart(clock->clock);
         }
-        sfClock_restart(clock->clock);
     }
     if (window->status != 0 && clock->seconds > 0.001)
         sfSprite_rotate(game_object[CURSOR].sprite, 20);
@@ -45,7 +46,7 @@ window_t *window, score_t *scores)
 {
     clock->time = sfClock_getElapsedTime(clock->clock);
     clock->seconds = clock->time.microseconds / 1000000.0;
-    if (clock->seconds > 0.01) {
+    if (clock->seconds > 0.01 && window->status != 9) {
         for (int i = 0; i < PRESS_START; i += 1)
             move_rect(game_object, game_object[i].speed, \
             game_object[i].size_max, i);

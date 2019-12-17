@@ -6,23 +6,24 @@
 */
 
 #include "../include/my.h"
-#include "../include/my.h"
+#include "../include/struct.h"
 
-void please_no_lag(window_t *window)
+void my_check_victory(window_t *window, game_object_t *game_object, \
+game_object_t *map, music_t musics)
 {
-    for (int i = 0; i < window->check_map; i += 1) {
-        if (window->map_object[i].pos.x < - 20) {
-            //sfSprite_destroy(window->map_object[i].sprite);
-            sfTexture_destroy(window->map_object[i].texture);
-        }
+    if (window->status == 2 && \
+    map[window->check_map - 1].pos.x <= game_object[NINJA].pos.x) {
+        sfSound_play(musics.victory_sound);
+        sfMusic_pause(musics.playing);
+        window->status = 9;
     }
 }
 
-void my_destroy_map(window_t window, game_object_t *map, int nb_elems)
+void my_music_button_next(music_t musics, window_t *window, int check)
 {
-    for (int i = 0; i < nb_elems; i += 1) {
-        sfTexture_destroy(map[i].texture);
-        sfSprite_destroy(map[i].sprite);
+    if (window->check_menu == 0 && check == 5) {
+        sfMusic_play(musics.menu_button);
+        sfMusic_setLoop(musics.menu_button, sfTrue);
     }
 }
 

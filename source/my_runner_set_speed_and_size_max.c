@@ -10,7 +10,7 @@
 
 void my_set_volumes(game_object_t *game_object, music_t music)
 {
-    sfMusic_setVolume(music.game_start, \
+    sfSound_setVolume(music.game_start, \
     (game_object[VOLUME].pos.x - 750) / 2);
     sfMusic_setVolume(music.menu_button, \
     (game_object[VOLUME].pos.x - 750) / 2);
@@ -48,6 +48,7 @@ void my_window_checks(window_t *window)
     window->check_options += 1;
     window->check_quit += 1;
     window->check_back += 1;
+    window->check_menu += 1;
 }
 
 void my_music_button(music_t musics, window_t *window, int check)
@@ -69,5 +70,6 @@ void my_music_button(music_t musics, window_t *window, int check)
         sfMusic_play(musics.menu_button);
         sfMusic_setLoop(musics.menu_button, sfTrue);
     }
+    my_music_button_next(musics, window, check);
     my_window_checks(window);
 }

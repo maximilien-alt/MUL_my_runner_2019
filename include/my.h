@@ -20,6 +20,13 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
+void my_check_victory(window_t *window, game_object_t *game_object, \
+game_object_t *map, music_t musics);
+void my_draw_victory(window_t *window, game_object_t *game_object, \
+score_t scores);
+void my_music_button_next(music_t musics, window_t *window, int check);
+void my_runner_set_structures_three(window_t *window, \
+music_t *music, score_t *scores, my_clock_t *clock);
 void manage_mouse_click_three(window_t *window, game_object_t *game_object, \
 music_t musics, score_t scores);
 void please_no_lag(window_t *window);

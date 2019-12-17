@@ -66,12 +66,15 @@ typedef struct score_s
 
 typedef struct music_s
 {
-    sfMusic *game_start;
     sfMusic *menu_button;
     sfMusic *playing;
     sfMusic *menu;
     sfSound *over;
     sfSoundBuffer *buffer;
+    sfSound *game_start;
+    sfSound *victory_sound;
+    sfSoundBuffer *buffer_start;
+    sfSoundBuffer *victory;
 }music_t;
 
 typedef struct window_s
@@ -85,6 +88,7 @@ typedef struct window_s
     int check_quit;
     int check_back;
     int check_over;
+    int check_menu;
     int grav;
     int check_speed;
     char **map;

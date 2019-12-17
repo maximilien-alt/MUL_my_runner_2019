@@ -8,6 +8,22 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+void my_runner_set_structures_three(window_t *window, \
+music_t *music, score_t *scores, my_clock_t *clock)
+{
+    music->victory = sfSoundBuffer_createFromFile\
+    ("music/success.ogg");
+    music->victory_sound = sfSound_create();
+    music->buffer_start = sfSoundBuffer_createFromFile\
+    ("music/game_start.ogg");
+    music->game_start = sfSound_create();
+    sfSound_setBuffer(music->game_start, music->buffer_start);
+    sfSound_setVolume(music->game_start, 50);
+    sfSound_setBuffer(music->victory_sound, music->victory);
+    sfSound_setVolume(music->victory_sound, 50);
+    window->check_menu = 0;
+}
+
 void my_game_over(window_t *window, music_t musics, score_t scores)
 {
     my_check_highscore(&scores);
@@ -36,7 +52,6 @@ music_t *music, score_t *scores, my_clock_t *clock)
 {
     music->buffer = sfSoundBuffer_createFromFile\
     ("music/game_over.ogg");
-
     music->over = sfSound_create();
     sfSound_setBuffer(music->over, music->buffer);
     window->check_play = 0;
@@ -44,7 +59,6 @@ music_t *music, score_t *scores, my_clock_t *clock)
     window->check_quit = 0;
     window->check_back = 0;
     window->check_over = 0;
-    sfMusic_setVolume(music->game_start, 50);
     sfMusic_setVolume(music->menu_button, 50);
     sfMusic_setVolume(music->playing, 50);
     sfMusic_setVolume(music->menu, 50);
@@ -72,11 +86,11 @@ score_t *scores, my_clock_t *clock)
     (sfVector2f){50, 900});
     scores->zero = zero;
     scores->score = my_score(scores->zero, (sfVector2f){920, 0});
-    music->game_start = sfMusic_createFromFile("music/game_start.ogg");
     music->menu_button = sfMusic_createFromFile("music/menu_button.ogg");
     music->playing = sfMusic_createFromFile("music/music.ogg");
     music->menu = sfMusic_createFromFile("music/menu.ogg");
     sfMusic_setLoop(music->playing, sfTrue);
     sfMusic_setLoop(music->menu, sfTrue);
     my_runner_set_structures_next(window, music, scores, clock);
+    my_runner_set_structures_three(window, music, scores, clock);
 }

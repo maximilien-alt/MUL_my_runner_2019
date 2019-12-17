@@ -13,13 +13,17 @@ sfIntRect rect, music_t musics)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
 
-    if (window->status == 8 && mouse.x >= 90 && mouse.x <= 325 && \
+    if ((window->status == 8 || window->status == 9) \
+    && mouse.x >= 90 && mouse.x <= 325 && \
     mouse.y >= 850 && mouse.y <= 930) {
         sfSprite_setTextureRect(game_object[MENU].sprite, \
         (sfIntRect){1920, 0, 1920, 1080});
-    } else
+        my_music_button(musics, window, 5);
+    } else {
         sfSprite_setTextureRect(game_object[MENU].sprite, \
         (sfIntRect){0, 0, 1920, 1080});
+        window->check_menu = 0;
+    }
 }
 
 void manage_mouse_moved_four(window_t *window, game_object_t *game_object, \
@@ -50,7 +54,8 @@ music_t musics, score_t scores)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
 
-    if (window->status == 8 && mouse.x >= 90 && mouse.x <= 325 && \
+    if ((window->status == 8 || window->status == 9) \
+    && mouse.x >= 90 && mouse.x <= 325 && \
     mouse.y >= 850 && mouse.y <= 930) {
         for (int i = BACK; i <= FRONT_2; i += 1)
             game_object[i].speed -= 10;

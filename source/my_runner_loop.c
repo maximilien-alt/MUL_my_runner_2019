@@ -63,8 +63,9 @@ int nb_elems(char **map)
 void my_loop(window_t window, game_object_t *game_object, \
 music_t musics, score_t score)
 {
+    int nb = nb_elems(window.map);
     my_clock_t clock;
-    game_object_t map[nb_elems(window.map)];
+    game_object_t map[nb];
 
     my_runner_set_structures(&window, &musics, &score, &clock);
     my_create_game_object(game_object, &window);
@@ -76,7 +77,7 @@ music_t musics, score_t score)
         my_jump(game_object, &window, musics, score);
         my_clock(game_object, &clock, &window, &score);
         my_draw_status(&window, game_object, score);
+        my_check_victory(&window, game_object, map, musics);
     }
-    my_destroy_map(window, map, nb_elems(window.map));
     my_destoy_object(game_object, window, musics, score);
 }

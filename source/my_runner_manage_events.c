@@ -68,7 +68,7 @@ music_t musics, score_t scores)
         window->status = 2;
         for (int i = 1; i < PRESS_START; i += 1)
                 game_object[i].speed += 10;
-        sfMusic_play(musics.game_start);
+        sfSound_play(musics.game_start);
         sfMusic_play(musics.playing);
         sfMusic_pause(musics.menu);
     }
