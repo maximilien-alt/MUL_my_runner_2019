@@ -63,6 +63,9 @@ music_t musics, score_t scores)
         my_create_map(window->map_object, window);
         window->status = 1;
         sfMusic_play(musics.menu);
+        game_object[VICTORY].rect.left = 0;
+        sfSprite_setTextureRect(game_object[VICTORY].sprite, \
+        game_object[VICTORY].rect);
     }
 }
 

@@ -74,7 +74,8 @@ music_t musics, score_t score)
     while (sfRenderWindow_isOpen(window.window)) {
         while (sfRenderWindow_pollEvent(window.window, &window.event))
             analyse_events(&window, game_object, musics, score);
-        my_jump(game_object, &window, musics, score);
+        if (window.status != 9)
+            my_jump(game_object, &window, musics, score);
         my_clock(game_object, &clock, &window, &score);
         my_draw_status(&window, game_object, score);
         my_check_victory(&window, game_object, map, musics);

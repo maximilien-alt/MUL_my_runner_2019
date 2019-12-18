@@ -18,6 +18,9 @@ score_t scores)
         sfRenderWindow_drawSprite(window->window, \
         window->map_object[i].sprite, NULL);
     }
+    sfRenderWindow_drawSprite(window->window, game_object[NINJA].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, \
+    game_object[VICTORY].sprite, NULL);
     sfRenderWindow_drawText(window->window, scores.score, NULL);
     sfRenderWindow_drawSprite(window->window, game_object[MENU].sprite, NULL);
     sfRenderWindow_drawSprite(window->window, game_object[CURSOR].sprite, NULL);

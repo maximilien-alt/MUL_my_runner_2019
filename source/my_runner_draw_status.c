@@ -19,7 +19,7 @@ music_t musics, score_t scores)
         my_game_over(window, musics, scores);
     else
         window->check_over = 0;
-    if (window->status >= 4 && window->status <= 7)
+    if ((window->status >= 4 && window->status <= 7))
         check_y = 500;
     game_object[NINJA].pos.x += game_object[NINJA].vel.x;
     game_object[NINJA].pos.y += game_object[NINJA].vel.y;

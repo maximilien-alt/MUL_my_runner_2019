@@ -52,6 +52,8 @@ void my_create_game_object_three(game_object_t *game_object, window_t *window)
     (sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080}, GAME_OVER);
     game_object[MENU] = create_object("sprites/menu.png", \
     (sfVector2f){0, -100}, (sfIntRect){0, 0, 1920, 1080}, MENU);
+    game_object[VICTORY] = create_object("sprites/victory.png", \
+    (sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080}, VICTORY);
 
 }
 

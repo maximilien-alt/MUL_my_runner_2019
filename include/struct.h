@@ -34,6 +34,7 @@ typedef enum
     SPEED_CHECK,
     GAME_OVER,
     MENU,
+    VICTORY,
     LEN
 }PARALLAX;
 
