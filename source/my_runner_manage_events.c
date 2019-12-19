@@ -118,4 +118,5 @@ music_t musics, score_t *scores)
             sfMusic_play(musics.playing);
         }
     }
+    manage_key_pressed_next(window, game_object, musics, scores);
 }

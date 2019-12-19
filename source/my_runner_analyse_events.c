@@ -13,7 +13,7 @@ sfIntRect rect, music_t musics)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
 
-    if ((window->status == 8 || window->status == 9) \
+    if ((window->status >= 8 && window->status <= 10) \
     && mouse.x >= 90 && mouse.x <= 325 && \
     mouse.y >= 850 && mouse.y <= 930) {
         sfSprite_setTextureRect(game_object[MENU].sprite, \
@@ -54,9 +54,11 @@ music_t musics, score_t scores)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window->window);
 
-    if ((window->status == 8 || window->status == 9) \
+    if ((window->status >= 8 && window->status <= 10) \
     && mouse.x >= 90 && mouse.x <= 325 && \
     mouse.y >= 850 && mouse.y <= 930) {
+        if (window->status == 10)
+            sfMusic_pause(musics.playing);
         for (int i = BACK; i <= FRONT_2; i += 1)
             game_object[i].speed -= 10;
         my_check_highscore(&scores);

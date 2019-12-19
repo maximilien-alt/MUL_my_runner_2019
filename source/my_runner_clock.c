@@ -43,7 +43,7 @@ void my_clock_ninja(game_object_t *game_object, \
 my_clock_t *clock, window_t *window, score_t *scores)
 {
     if (window->status != 0 && clock->seconds > 0.1 && \
-    window->status != 8 && window->status != 9) {
+    window->status < 8) {
         move_rect(game_object, game_object[NINJA].speed, \
         game_object[NINJA].size_max, NINJA);
         if (window->status == 2) {
@@ -71,7 +71,7 @@ window_t *window, score_t *scores)
 {
     clock->time = sfClock_getElapsedTime(clock->clock);
     clock->seconds = clock->time.microseconds / 1000000.0;
-    if (clock->seconds > 0.01) {
+    if (clock->seconds > 0.01 && window->status != 10) {
         for (int i = 0; i < PRESS_START; i += 1)
             move_rect(game_object, game_object[i].speed, \
             game_object[i].size_max, i);

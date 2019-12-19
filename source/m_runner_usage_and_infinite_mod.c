@@ -8,6 +8,36 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+void my_draw_pause(window_t *window, game_object_t *game_object, \
+score_t scores)
+{
+    for (int i = 0; i < PRESS_START; i += 1)
+        sfRenderWindow_drawSprite(window->window, \
+        game_object[i].sprite, NULL);
+    for (int i = 0; i < window->check_map; i += 1) {
+        sfRenderWindow_drawSprite(window->window, \
+        window->map_object[i].sprite, NULL);
+    }
+    sfRenderWindow_drawSprite(window->window, game_object[NINJA].sprite, NULL);
+    sfRenderWindow_drawText(window->window, scores.score, NULL);
+    sfRenderWindow_drawSprite(window->window, game_object[MENU].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, game_object[CURSOR].sprite, NULL);
+}
+
+void manage_key_pressed_next(window_t *window, \
+game_object_t *game_object, music_t musics, score_t *scores)
+{
+    if (window->event.key.code == sfKeyP && window->status == 10 \
+    && window->check_pause == 0) {
+        window->status = 2;
+        window->check_pause += 1;
+    }
+    if (window->event.key.code == sfKeyP && window->status == 2 \
+    && window->check_pause == 0)
+        window->status = 10;
+    window->check_pause = 0;
+}
+
 int my_usage(void)
 {
     char *usage = "Welcome to my runner !\nUSAGE\n\
@@ -15,7 +45,8 @@ int my_usage(void)
     -i launch the game in infinity mode.\n\
     -h print the usage and quit.\n\nUSER INTERACTIONS\n    SPACE_KEY jump, \n\
     ESCAPE_KEY quit, \n\
-    R_KEY restart(when you loose).\n";
+    R_KEY restart(when you loose).\n\
+    P_KEY pause(in game).";
 
     write(1, usage, my_strlen(usage));
     return (0);

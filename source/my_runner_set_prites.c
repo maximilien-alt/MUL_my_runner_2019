@@ -22,6 +22,7 @@ music_t *music, score_t *scores, my_clock_t *clock)
     sfSound_setBuffer(music->victory_sound, music->victory);
     sfSound_setVolume(music->victory_sound, 50);
     window->check_menu = 0;
+    window->check_pause = 0;
 }
 
 void my_game_over(window_t *window, music_t musics, score_t scores)

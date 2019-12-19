@@ -20,6 +20,10 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
+void my_draw_pause(window_t *window, game_object_t *game_object, \
+score_t scores);
+void manage_key_pressed_next(window_t *window, \
+game_object_t *game_object, music_t musics, score_t *scores);
 void my_reset_map(window_t *window);
 int my_usage(void);
 void my_check_victory(window_t *window, game_object_t *game_object, \

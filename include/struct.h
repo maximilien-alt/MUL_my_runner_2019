@@ -92,6 +92,7 @@ typedef struct window_s
     int check_menu;
     int grav;
     int inf;
+    int check_pause;
     int check_speed;
     char **map;
     int check_map;

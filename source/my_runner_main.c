@@ -51,6 +51,8 @@ score_t scores)
         my_draw_game_over(window, game_object, scores);
     if (window->status == 9)
         my_draw_victory(window, game_object, scores);
+    if (window->status == 10)
+        my_draw_pause(window, game_object, scores);
 }
 
 void my_draw_status(window_t *window, game_object_t *game_object, \
