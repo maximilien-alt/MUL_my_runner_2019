@@ -52,7 +52,18 @@ char **get_map(char *filepath)
 
 int my_error_handling(int ac, char *av[])
 {
+    int fd = 0;
+    char temp[1];
+
     if (ac != 2)
         return (84);
-    return (0);
+    if (av[1][0] == '-' && av[1][1] == 'h' && av[1][2] == '\0')
+        return (0);
+    if (av[1][0] == '-' && av[1][1] == 'i' && av[1][2] == '\0')
+        return (0);
+    fd = open(av[1], O_RDONLY);
+    if (fd <= 0 || read(fd, temp, 1) <= 0)
+        return (84);
+    close (fd);
+    return (0); 
 }

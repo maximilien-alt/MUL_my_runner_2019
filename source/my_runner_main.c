@@ -87,6 +87,14 @@ int main(int ac, char *av[])
 
     if (my_error_handling(ac, av) == 84)
         return (84);
-    window.map = get_map(av[1]);
+    if (av[1][0] == '-' && av[1][1] == 'h' && av[1][2] == '\0')
+        return (my_usage());
+    if (av[1][0] == '-' && av[1][1] == 'i' && av[1][2] == '\0') {
+        window.map = get_map("maps/map_1");
+        window.inf = 1;
+    } else {
+        window.map = get_map(av[1]);
+        window.inf = 0;
+    }
     my_loop(window, game_object, musics, score);
 }

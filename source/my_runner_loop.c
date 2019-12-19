@@ -78,7 +78,10 @@ music_t musics, score_t score)
             my_jump(game_object, &window, musics, score);
         my_clock(game_object, &clock, &window, &score);
         my_draw_status(&window, game_object, score);
-        my_check_victory(&window, game_object, map, musics);
+        if (window.inf == 0)
+            my_check_victory(&window, game_object, map, musics);
+        else
+            my_reset_map(&window);
     }
     my_destoy_object(game_object, window, musics, score);
 }

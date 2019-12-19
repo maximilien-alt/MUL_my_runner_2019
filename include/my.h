@@ -20,6 +20,8 @@
 #define WIDTH 1920
 #define HEIGHT 1080
 
+void my_reset_map(window_t *window);
+int my_usage(void);
 void my_check_victory(window_t *window, game_object_t *game_object, \
 game_object_t *map, music_t musics);
 void my_draw_victory(window_t *window, game_object_t *game_object, \

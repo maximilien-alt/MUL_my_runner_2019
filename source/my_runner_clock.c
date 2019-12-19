@@ -52,8 +52,10 @@ my_clock_t *clock, window_t *window, score_t *scores)
         }
         sfClock_restart(clock->clock);
     } else if (window->status != 0 && clock->seconds > 0.01) {
-        if (window->status == 8 || window->status == 9)
+        if (window->status == 8 || window->status == 9) {
+            my_check_highscore(scores);
             scores->zero = "0";
+        }
         if (clock->seconds > 1.0) {
             move_rect(game_object, game_object[GAME_OVER].speed, \
             game_object[GAME_OVER].size_max, GAME_OVER);
