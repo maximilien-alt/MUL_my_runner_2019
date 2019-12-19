@@ -43,7 +43,7 @@ void my_clock_ninja(game_object_t *game_object, \
 my_clock_t *clock, window_t *window, score_t *scores)
 {
     if (window->status != 0 && clock->seconds > 0.1 && \
-    window->status < 8) {
+    window->status < 8 && window->status != 4) {
         move_rect(game_object, game_object[NINJA].speed, \
         game_object[NINJA].size_max, NINJA);
         if (window->status == 2) {

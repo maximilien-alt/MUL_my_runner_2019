@@ -8,6 +8,23 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+void get_my_second_jump(window_t *window, game_object_t *game_object)
+{
+    int ninja_x = game_object[NINJA].pos.x;
+    int ninja_y = game_object[NINJA].pos.y;
+
+    for (int i = 0; i < window->check_map; i += 1) {
+        if (window->map_object[i].type == 4 && \
+        ninja_x >= window->map_object[i].pos.x - 40 && \
+        ninja_x < window->map_object[i].pos.x + 40 && \
+        ninja_y >= window->map_object[i].pos.y - 10 && \
+        ninja_x <= window->map_object[i].pos.y + 10) {
+            window->nb_jump += 1;
+            window->map_object[i].type = 5;
+        }
+    }
+}
+
 void my_draw_pause(window_t *window, game_object_t *game_object, \
 score_t scores)
 {
@@ -46,14 +63,15 @@ int my_usage(void)
     -h print the usage and quit.\n\nUSER INTERACTIONS\n    SPACE_KEY jump, \n\
     ESCAPE_KEY quit, \n\
     R_KEY restart(when you loose).\n\
-    P_KEY pause(in game).";
+    P_KEY pause(in game).\nYour highscore is save and visible in the menu";
 
     write(1, usage, my_strlen(usage));
     return (0);
 }
 
-void my_reset_map(window_t *window)
+void my_reset_map(window_t *window, game_object_t *game_object)
 {
+
     for (int i = 0; i < window->check_map; i += 1) {
         if (window->map_object[i].pos.x <= 0) {
             window->map_object[i].pos.x += 180*40;

@@ -108,6 +108,7 @@ music_t musics, score_t *scores)
     window->event.key.code == sfKeySpace && \
     window->nb_jump != 0) {
         game_object[NINJA].vel.y = -70;
+        get_my_second_jump(window, game_object);
         window->nb_jump -= 1;
     }
     if (window->status == 8) {

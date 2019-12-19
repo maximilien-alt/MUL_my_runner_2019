@@ -11,11 +11,23 @@
 void my_check_victory(window_t *window, game_object_t *game_object, \
 game_object_t *map, music_t musics)
 {
+    int ninja_x = game_object[NINJA].pos.x;
+    int ninja_y = game_object[NINJA].pos.y;
+
     if (window->status == 2 && \
     map[window->check_map - 1].pos.x <= game_object[NINJA].pos.x) {
         sfSound_play(musics.victory_sound);
         sfMusic_pause(musics.playing);
         window->status = 9;
+    }
+    for (int i = 0; i < window->check_map; i += 1) {
+        if (window->map_object[i].type == 4 && \
+        ninja_x >= window->map_object[i].pos.x - 40 && \
+        ninja_x < window->map_object[i].pos.x + 40 && \
+        ninja_y + 20 <= window->map_object[i].pos.y) {
+            window->nb_jump += 1;
+            window->map_object[i].type = 5;
+        }
     }
 }
 

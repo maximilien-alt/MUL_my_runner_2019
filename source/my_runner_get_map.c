@@ -18,7 +18,8 @@ music_t musics)
         if (ninja_x >= window->map_object[cursor].pos.x && \
         ninja_x < window->map_object[cursor].pos.x + 40 && \
         ninja_y + 90 <= window->map_object[cursor].pos.y && \
-        window->map_object[cursor].type != 3)
+        window->map_object[cursor].type != 3 && \
+        window->map_object[cursor].type != 4)
             return (window->map_object[cursor].pos.y - 90);
         if (ninja_x >= window->map_object[cursor].pos.x && \
         ninja_x < window->map_object[cursor].pos.x + 40 && \

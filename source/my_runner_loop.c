@@ -26,6 +26,10 @@ int complete_my_map(int cursor, int digit, window_t *window, game_object_t *map)
         map[window->check_map] = create_object("sprites/pics.png", vector, \
         (sfIntRect){0, 0, 40, 40}, 3);
         window->check_map += 1;
+    } else if (window->map[cursor][digit] == '4') {
+        map[window->check_map] = create_object("sprites/power_up.png", vector, \
+        (sfIntRect){0, 0, 40, 40}, 4);
+        window->check_map += 1;
     }
 }
 
@@ -43,7 +47,8 @@ int is_that_an_elem(int cursor, int digit, char **map)
 {
     if (map[cursor][digit] == '1' \
     || map[cursor][digit] == '2' \
-    || map[cursor][digit] == '3') {
+    || map[cursor][digit] == '3' \
+    || map[cursor][digit] == '4') {
         return (1);
     }
     return (0);
@@ -81,7 +86,7 @@ music_t musics, score_t score)
         if (window.inf == 0)
             my_check_victory(&window, game_object, map, musics);
         else
-            my_reset_map(&window);
+            my_reset_map(&window, game_object);
     }
     my_destoy_object(game_object, window, musics, score);
 }
