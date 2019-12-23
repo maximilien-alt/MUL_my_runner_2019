@@ -37,7 +37,7 @@ sfText *my_text(void)
 {
     sfText* text;
     sfFont* font;
-    char *str = "\n\n\n\n\n\n                YOU WIN!";
+    char *str = "\n\n\n\n\n\n                PAUSE!";
 
     font = sfFont_createFromFile("sprites/text.ttf");
     text = sfText_create();

@@ -35,6 +35,7 @@ typedef enum
     GAME_OVER,
     MENU,
     VICTORY,
+    PAUSE,
     LEN
 }PARALLAX;
 

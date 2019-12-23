@@ -60,9 +60,8 @@ score_t scores)
             sfRenderWindow_drawSprite(window->window, \
             window->map_object[i].sprite, NULL);
     }
-    for (int i = NINJA; i >= CURSOR; i += -1)
-        sfRenderWindow_drawSprite(window->window, \
-        game_object[i].sprite, NULL);
+    sfRenderWindow_drawSprite(window->window, \
+    game_object[NINJA].sprite, NULL);
     sfText_setPosition(scores.score, \
     (sfVector2f){940 - (30 * my_strlen(scores.zero)), 0});
     sfRenderWindow_drawText(window->window, scores.score, NULL);
