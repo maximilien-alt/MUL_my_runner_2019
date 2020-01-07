@@ -66,5 +66,5 @@ int my_error_handling(int ac, char *av[])
     if (fd <= 0 || read(fd, temp, 1) <= 0)
         return (84);
     close (fd);
-    return (0); 
+    return (0);
 }
