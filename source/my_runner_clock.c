@@ -62,8 +62,6 @@ my_clock_t *clock, window_t *window, score_t *scores)
             sfClock_restart(clock->clock);
         }
     }
-    if (window->status != 0 && clock->seconds > 0.001)
-        sfSprite_rotate(game_object[CURSOR].sprite, 20);
 }
 
 void my_clock(game_object_t *game_object, my_clock_t *clock, \
@@ -85,5 +83,7 @@ window_t *window, score_t *scores)
     }
     if (window->status == 9)
         my_manage_victory(game_object, clock);
+    if (window->status != 0 && clock->seconds > 0.001)
+        sfSprite_rotate(game_object[CURSOR].sprite, 20);
     my_clock_ninja(game_object, clock, window, scores);
 }
