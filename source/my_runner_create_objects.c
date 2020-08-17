@@ -7,17 +7,6 @@
 
 #include "../include/my.h"
 
-sfRenderWindow *create_window(int fps)
-{
-    sfRenderWindow* window = NULL;
-    sfVideoMode mode = {1920, 1080, 32};
-
-    window = sfRenderWindow_create(mode, "My_runner", sfResize | sfClose, NULL);
-    sfRenderWindow_setFramerateLimit(window, fps);
-    sfRenderWindow_setMouseCursorVisible(window, sfFalse);
-    return (window);
-}
-
 game_object_t create_object(char *filepath, sfVector2f pos, \
 sfIntRect rect, PARALLAX type)
 {
