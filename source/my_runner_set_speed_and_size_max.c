@@ -12,7 +12,7 @@ void my_set_volumes(game_object_t *game_object, music_t music)
 {
     sfSound_setVolume(music.game_start, \
     (game_object[VOLUME].pos.x - 750) / 2);
-    sfMusic_setVolume(music.menu_button, \
+    //sfMusic_setVolume(music.menu_button, \
     (game_object[VOLUME].pos.x - 750) / 2);
     sfMusic_setVolume(music.playing, \
     (game_object[VOLUME].pos.x - 750) / 2);
@@ -53,22 +53,22 @@ void my_window_checks(window_t *window)
 
 void my_music_button(music_t musics, window_t *window, int check)
 {
-    sfMusic_setLoop(musics.menu_button, sfFalse);
+    //sfMusic_setLoop(musics.menu_button, sfFalse);
     if (window->check_quit == 0 && check == 3) {
-        sfMusic_play(musics.menu_button);
-        sfMusic_setLoop(musics.menu_button, sfTrue);
+        //sfMusic_play(musics.menu_button);
+        //sfMusic_setLoop(musics.menu_button, sfTrue);
     }
     if (window->check_play == 0 && check == 1) {
-        sfMusic_play(musics.menu_button);
-        sfMusic_setLoop(musics.menu_button, sfTrue);
+        //sfMusic_play(musics.menu_button);
+        //sfMusic_setLoop(musics.menu_button, sfTrue);
     }
     if (window->check_options == 0 && check == 2) {
-        sfMusic_play(musics.menu_button);
-        sfMusic_setLoop(musics.menu_button, sfTrue);
+        //sfMusic_play(musics.menu_button);
+        //sfMusic_setLoop(musics.menu_button, sfTrue);
     }
     if (window->check_back == 0 && check == 4) {
-        sfMusic_play(musics.menu_button);
-        sfMusic_setLoop(musics.menu_button, sfTrue);
+        //sfMusic_play(musics.menu_button);
+        //sfMusic_setLoop(musics.menu_button, sfTrue);
     }
     my_music_button_next(musics, window, check);
     my_window_checks(window);

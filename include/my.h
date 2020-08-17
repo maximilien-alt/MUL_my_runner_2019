@@ -16,6 +16,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include "struct.h"
 #define WIDTH 1920
 #define HEIGHT 1080

@@ -25,7 +25,7 @@ window_t window, music_t musics, score_t scores)
         sfSprite_destroy(game_object[i].sprite);
     }
     sfMusic_destroy(musics.playing);
-    sfMusic_destroy(musics.menu_button);
+    //sfMusic_destroy(musics.menu_button);
     sfSound_destroy(musics.game_start);
     sfMusic_destroy(musics.menu);
     sfSound_destroy(musics.over);

@@ -8,6 +8,17 @@
 #include "../include/my.h"
 #include "../include/struct.h"
 
+sfRenderWindow *create_window(int nb)
+{
+    sfRenderWindow *window = NULL;
+    sfVideoMode mode = {1920, 1080, 32};
+
+    window = sfRenderWindow_create(mode, "MY RUNNER", sfResize, NULL);
+    sfRenderWindow_setFramerateLimit(window, nb);
+    sfRenderWindow_setMouseCursorVisible(window, false);
+    return window;
+}
+
 void my_runner_set_structures_three(window_t *window, \
 music_t *music, score_t *scores, my_clock_t *clock)
 {
@@ -60,7 +71,7 @@ music_t *music, score_t *scores, my_clock_t *clock)
     window->check_quit = 0;
     window->check_back = 0;
     window->check_over = 0;
-    sfMusic_setVolume(music->menu_button, 50);
+    //sfMusic_setVolume(music->menu_button, 50);
     sfMusic_setVolume(music->playing, 50);
     sfMusic_setVolume(music->menu, 50);
     sfSound_setVolume(music->over, 50);
@@ -87,7 +98,7 @@ score_t *scores, my_clock_t *clock)
     (sfVector2f){50, 900});
     scores->zero = zero;
     scores->score = my_score(scores->zero, (sfVector2f){920, 0});
-    music->menu_button = sfMusic_createFromFile("music/menu_button.ogg");
+    //music->menu_button = sfMusic_createFromFile("music/menu_button.ogg");
     music->playing = sfMusic_createFromFile("music/music.ogg");
     music->menu = sfMusic_createFromFile("music/menu.ogg");
     sfMusic_setLoop(music->playing, sfTrue);

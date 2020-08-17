@@ -34,8 +34,8 @@ game_object_t *map, music_t musics)
 void my_music_button_next(music_t musics, window_t *window, int check)
 {
     if (window->check_menu == 0 && check == 5) {
-        sfMusic_play(musics.menu_button);
-        sfMusic_setLoop(musics.menu_button, sfTrue);
+        //sfMusic_play(musics.menu_button);
+        //sfMusic_setLoop(musics.menu_button, sfTrue);
     }
 }
 
