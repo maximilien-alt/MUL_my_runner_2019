@@ -53,7 +53,7 @@ void my_window_checks(window_t *window)
 
 void my_music_button(music_t musics, window_t *window, int check)
 {
-    sfMusic_setLoop(musics.menu_button, sfFalse);
+    /*sfMusic_setLoop(musics.menu_button, sfFalse);
     if (window->check_quit == 0 && check == 3) {
         sfMusic_play(musics.menu_button);
         sfMusic_setLoop(musics.menu_button, sfTrue);
@@ -70,6 +70,6 @@ void my_music_button(music_t musics, window_t *window, int check)
         sfMusic_play(musics.menu_button);
         sfMusic_setLoop(musics.menu_button, sfTrue);
     }
-    my_music_button_next(musics, window, check);
+    my_music_button_next(musics, window, check);*/
     my_window_checks(window);
 }

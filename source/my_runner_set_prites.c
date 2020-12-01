@@ -60,10 +60,10 @@ music_t *music, score_t *scores, my_clock_t *clock)
     window->check_quit = 0;
     window->check_back = 0;
     window->check_over = 0;
-    sfMusic_setVolume(music->menu_button, 50);
-    sfMusic_setVolume(music->playing, 50);
-    sfMusic_setVolume(music->menu, 50);
-    sfSound_setVolume(music->over, 50);
+    //sfMusic_setVolume(music->menu_button, 50);
+    //sfMusic_setVolume(music->playing, 50);
+    //sfMusic_setVolume(music->menu, 50);
+    //sfSound_setVolume(music->over, 50);
     sfMusic_play(music->menu);
     window->grav = 10;
     clock->clock = sfClock_create();
@@ -87,7 +87,7 @@ score_t *scores, my_clock_t *clock)
     (sfVector2f){50, 900});
     scores->zero = zero;
     scores->score = my_score(scores->zero, (sfVector2f){920, 0});
-    music->menu_button = sfMusic_createFromFile("music/menu_button.ogg");
+    //music->menu_button = sfMusic_createFromFile("music/menu_button.ogg");
     music->playing = sfMusic_createFromFile("music/music.ogg");
     music->menu = sfMusic_createFromFile("music/menu.ogg");
     sfMusic_setLoop(music->playing, sfTrue);
